@@ -7,4 +7,5 @@
 * Ylläpitäjä voisi luoda uusia varauskohteita ja peruuttaa käyttäjien varauksia.
 ### **HUOM**
 * **_Aihe voi vielä muuttua, koska tässä saattaa olla liian vähän toimintoja_**
-
+## [Laskarit](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit)
+* [Viikko 1](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko1.md)
