@@ -7,6 +7,8 @@
 ### Dokumentaatio
 
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+* [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+
 
 ## [Laskarit](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit)
 * [Viikko 1](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko1.md)
