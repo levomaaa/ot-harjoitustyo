@@ -10,4 +10,4 @@
 
 ## [Laskarit](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit)
 * [Viikko 1](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko1.md)
-* [Viikko 2](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko2.md)
+* [Viikko 2](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko2)
