@@ -14,7 +14,6 @@
     Ruutu <|-- AsematJaLaitokset
     Ruutu <|-- NormaaliKatu 
     SattumaJaYhteismaa <|-- Kortti
-    Toiminto -- Pelinappula
     NormaaliKatu "0..4" -- "1" Rakennus
     Pelaaja "2..8" -- "1" Monopolipeli
     Pelaaja "1" -- "1" Rahat
