@@ -8,9 +8,10 @@
 
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
+* [Changelog](./dokumentaatio/changelog.md)
 
 
-## [Laskarit](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit)
+## Laskarit
 * [Viikko 1](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko1.md)
 * [Viikko 2](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko2)
 * [Viikko 3](https://github.com/levomaaa/ot-harjoitustyo/blob/main/laskarit/viikko3)
