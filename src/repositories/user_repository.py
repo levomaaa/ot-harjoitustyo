@@ -21,6 +21,12 @@ class UserRepository:
 
     def create(self, user):
         """Luo käyttäjän tietokantaan.
+
+        Args:
+            user: Luotava käyttäjä User-oliona.
+
+        Returns:
+            Tallennettu käyttäjä User-oliona.
         """
 
         cursor = self._connection.cursor()
