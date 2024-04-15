@@ -1,5 +1,4 @@
-from tkinter import Tk, ttk, constants
-from tkinter.font import BOLD, Font
+from tkinter import Tk
 from ui.ui import UI
 
 

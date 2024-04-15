@@ -33,7 +33,7 @@ class UserRepository:
         self._connection.commit()
 
         return user
-    
+
     def delete_all(self):
         """Poistaa kaikki käyttäjät tietokannasta.
         """
@@ -58,7 +58,6 @@ class UserRepository:
         rows = cursor.fetchall()
 
         return list(map(get_user_by_row, rows))
-
 
 
 user_repository = UserRepository(get_database_connection())
