@@ -2,6 +2,7 @@ from tkinter import Tk, ttk, constants
 from tkinter.font import BOLD, Font
 from ui.login_view import LoginView
 
+
 class UI:
     def __init__(self, root):
         self._root = root
@@ -9,7 +10,7 @@ class UI:
 
     def start(self):
         self._show_login_view()
-    
+
     def _show_login_view(self):
         self._hide_current_view()
 

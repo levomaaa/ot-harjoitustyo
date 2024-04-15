@@ -22,3 +22,7 @@ def coverage_report(ctx):
 @task
 def build(ctx):
     ctx.run("python3 src/build.py", pty=True)
+
+@task
+def format(ctx):  # pylint: disable=redefined-builtin
+    ctx.run("autopep8 --in-place --recursive src", pty=True)
