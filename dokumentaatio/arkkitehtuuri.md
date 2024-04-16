@@ -10,7 +10,7 @@ Pakkaus **ui** sisältää käyttöliittymästä, **services** sovelluslogiikast
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen tietomallin muodostavat luokat [User](https://github.com/levomaaa/ot-harjoitustyo/blob/master/src/entities/user.py) ja [Calender] (tulossa), jotka kuvaavat käyttäjiä ja ajanvarauskalenteria:
+Sovelluksen loogisen tietomallin muodostavat luokat [User](https://github.com/levomaaa/ot-harjoitustyo/blob/main/src/entities/user.py) ja [Calender] (tulossa), jotka kuvaavat käyttäjiä ja ajanvarauskalenteria:
 
 ```mermaid
  classDiagram
@@ -29,4 +29,4 @@ Sovelluksen loogisen tietomallin muodostavat luokat [User](https://github.com/le
 
 Sovelluslogiikka saattaa hiukan muuttua kurssin edetessä, mutta runko tulee olemaan samanlainen.
 
-Toiminnallisista kokonaisuuksista vastaa luokan [Service](https://github.com/levomaaa/ot-harjoitustyo/blob/master/src/services/service.py) ainoa Service-olio. Jokaiselle käyttöliittymän toiminnolle on määritelty omat metodinsa Service-luokassa.
+Toiminnallisista kokonaisuuksista vastaa luokan [Service](https://github.com/levomaaa/ot-harjoitustyo/blob/main/src/services/service.py) ainoa Service-olio. Jokaiselle käyttöliittymän toiminnolle on määritelty omat metodinsa Service-luokassa.
