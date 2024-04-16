@@ -1,5 +1,5 @@
 from tkinter import ttk, StringVar, constants, messagebox
-from services.service import service, UsernameExistsError, PasswordsDoNotMatch
+from services.service import service, UsernameExistsError
 
 
 class CreateUserView:
