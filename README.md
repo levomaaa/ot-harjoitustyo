@@ -14,6 +14,7 @@ Sovelluksen toiminta on testattu Python-versiolla `3.10`. Jos Python-versiosi on
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 * [Changelog](./dokumentaatio/changelog.md)
+* [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
 ## Asennus
 
@@ -62,3 +63,11 @@ poetry run invoke coverage-report
 ```
 
 Raportti generoituu linkkiin, joka tulee komennon suoritettua näkyviin.
+
+### Pylint
+
+Tiedoston [.pylintrc](./.pylintrc) määrittämät tarkastukset voi suorittaa komennolla:
+
+```bash
+poetry run invoke lint
+```
