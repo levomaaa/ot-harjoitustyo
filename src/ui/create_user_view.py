@@ -37,12 +37,20 @@ class CreateUserView:
         password = self._password_entry.get()
         password_repeat = self._password_entry_repeat.get()
 
-        if len(username) == 0 or len(password) == 0 or len(password_repeat) == 0:
-            self._show_error("Username and password is required")
+        if len(username) < 3 or len(password) < 3 or len(password_repeat) < 3:
+            self._show_error("Username and password must be at least 3 characters long")
             return
         elif password != password_repeat:
             self._show_error("Passwords do not match")
             return
+        for i in range(len(username)):
+            if username[i] == " ":
+                self._show_error("Username can't contain spaces")
+                return
+        for i in range(len(password)):
+            if password[i] == " ":
+                self._show_error("Password can't contain spaces")
+                return
 
         try:
             service.create_user(username, password)
@@ -51,7 +59,7 @@ class CreateUserView:
             self._show_error(f"Username {username} already exists")
 
     def _show_error(self, message):
-        messagebox.showerror('Error',message)
+        messagebox.showerror('Error', message)
     
 
     def _initialize_fields(self):
