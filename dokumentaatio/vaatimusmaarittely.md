@@ -20,10 +20,10 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
 
 ### Ennen kirjautumista
 
-- Käyttäjä voi luoda järjestelmään käyttäjätunnuksen
-  - Käyttäjätunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä ja ei saa sisältää välilyöntejä
-  - Salasana syötetään rekisteröityessä kahdesti ja sen täytyy olla molemmilla kerroilla sama
-    - Salasana ei saa sisältää välilyöntejä ja täytyy olla vähintään 3 merkkiä pitkä
+- Käyttäjä voi luoda järjestelmään käyttäjätunnuksen "tehty"
+  - Käyttäjätunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä ja ei saa sisältää välilyöntejä "tehty"
+  - Salasana syötetään rekisteröityessä kahdesti ja sen täytyy olla molemmilla kerroilla sama "tehty"
+    - Salasana ei saa sisältää välilyöntejä ja täytyy olla vähintään 3 merkkiä pitkä "tehty"
 - Käyttäjä voi kirjautua järjestelmään
   - Kirjautuminen onnistuu kirjoittaessa jo olemassaolevat käyttäjätunnus ja salasana kirjautumislomakkeelle
   - Jos käyttäjää ei ole olemassa tai salasana ei täsmää, antaa järjestelmä virheilmoituksen
