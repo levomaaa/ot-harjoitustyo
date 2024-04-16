@@ -4,15 +4,9 @@ from repositories.user_repository import (
     user_repository as default_user_repository
 )
 
-
-class InvalidCredentialsError(Exception):
-    pass
-
 class UsernameExistsError(Exception):
     pass
 
-class PasswordsDoNotMatch(Exception):
-    pass
 
 
 class Service:
@@ -31,6 +25,14 @@ class Service:
         """
         self._user = None
         self._user_repository = user_repository
+
+    def get_users(self):
+        """Palauttaa listan kaikista käyttäjistä.
+
+        Returns:
+            User-oliota sisältä lista käyttäjistä.
+        """
+        return self._user_repository.find_all()
 
     def create_user(self, username, password, login=True):
         """Luo uuden käyttäjän ja kirjaa sen sisään.
@@ -55,9 +57,7 @@ class Service:
             raise UsernameExistsError(f"Username {username} already exists")
 
         user = self._user_repository.create(User(username, password))
-
-        if login:
-            self._user = user
+        self._user = user
 
         return user
 
