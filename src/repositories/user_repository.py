@@ -64,6 +64,27 @@ class UserRepository:
         rows = cursor.fetchall()
 
         return list(map(get_user_by_row, rows))
+    
+    def find_by_username(self, username):
+        """Palauttaa käyttäjän käyttäjätunnuksen perusteella tietokannasta.
+
+        Args:
+            username: Käyttäjätunnus, jonka perusteella käyttäjä palautetaan.
+
+        Returns:
+            Palauttaa User-olion, jos käyttäjätunnuksen omistava käyttäjä on tietokannassa.
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            "select * from users where username = ?",
+            (username,)
+        )
+
+        row = cursor.fetchone()
+
+        return get_user_by_row(row)
 
 
 user_repository = UserRepository(get_database_connection())
