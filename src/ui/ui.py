@@ -3,6 +3,7 @@ from tkinter.font import BOLD, Font
 from ui.login_view import LoginView
 from ui.create_user_view import CreateUserView
 
+
 class UI:
     """Sovelluksen näkyvästä käyttöliittymästä vastaava luokka."""
 

@@ -2,6 +2,7 @@ import unittest
 from entities.user import User
 from services.service import UsernameExistsError, Service
 
+
 class FakeUserRepository:
     def __init__(self, users=None):
         self.users = users or []
@@ -12,7 +13,7 @@ class FakeUserRepository:
 
     def find_all(self):
         return self.users
-    
+
     def find_by_username(self, username):
         filter_users = filter(
             lambda user: user.username == username,
@@ -20,7 +21,7 @@ class FakeUserRepository:
         )
         filtered_list = list(filter_users)
         if len(filtered_list) > 0:
-            return filtered_list[0] 
+            return filtered_list[0]
         else:
             return None
 

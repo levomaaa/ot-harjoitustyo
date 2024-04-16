@@ -4,9 +4,9 @@ from repositories.user_repository import (
     user_repository as default_user_repository
 )
 
+
 class UsernameExistsError(Exception):
     pass
-
 
 
 class Service:
@@ -57,8 +57,11 @@ class Service:
             raise UsernameExistsError(f"Username {username} already exists")
 
         user = self._user_repository.create(User(username, password))
-        self._user = user
+
+        if login:
+            self._user = user
 
         return user
+
 
 service = Service()

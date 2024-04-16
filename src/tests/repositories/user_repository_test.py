@@ -15,7 +15,7 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(len(users), 1)
         self.assertEqual(users[0].username, self.user_aapeli.username)
         self.assertEqual(users[0].password, self.user_aapeli.password)
-   
+
     def test_find_by_username(self):
         user_repository.create(self.user_aapeli)
         user = user_repository.find_by_username(self.user_aapeli.username)

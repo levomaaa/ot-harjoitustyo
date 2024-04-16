@@ -1,6 +1,7 @@
 from tkinter import ttk, StringVar, constants, messagebox
 from services.service import service, UsernameExistsError, PasswordsDoNotMatch
 
+
 class CreateUserView:
     """Käyttäjän luomisesta vastaava näkymä."""
 
@@ -38,7 +39,8 @@ class CreateUserView:
         password_repeat = self._password_entry_repeat.get()
 
         if len(username) < 3 or len(password) < 3 or len(password_repeat) < 3:
-            self._show_error("Username and password must be at least 3 characters long")
+            self._show_error(
+                "Username and password must be at least 3 characters long")
             return
         elif password != password_repeat:
             self._show_error("Passwords do not match")
@@ -60,7 +62,6 @@ class CreateUserView:
 
     def _show_error(self, message):
         messagebox.showerror('Error', message)
-    
 
     def _initialize_fields(self):
         self._frame = ttk.Frame(master=self._root)
@@ -74,10 +75,12 @@ class CreateUserView:
         password_label = ttk.Label(master=self._frame, text="Password")
         self._password_entry = ttk.Entry(master=self._frame, show='*')
 
-        password_label_repeat = ttk.Label(master=self._frame, text="Repeat password")
+        password_label_repeat = ttk.Label(
+            master=self._frame, text="Repeat password")
         self._password_entry_repeat = ttk.Entry(master=self._frame, show='*')
 
-        register_button = ttk.Button(master=self._frame, text="Register", command=self._create_user_handler)
+        register_button = ttk.Button(
+            master=self._frame, text="Register", command=self._create_user_handler)
         menu_button = ttk.Button(
             master=self._frame, text="Back to login", command=self._handle_back_to_login)
 
@@ -96,4 +99,3 @@ class CreateUserView:
         menu_button.grid(columnspan=2, sticky=(
             constants.E, constants.W), padx=5, pady=5)
         self._frame.grid_columnconfigure(1, weight=1, minsize=350)
-

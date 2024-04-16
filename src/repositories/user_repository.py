@@ -64,7 +64,7 @@ class UserRepository:
         rows = cursor.fetchall()
 
         return list(map(get_user_by_row, rows))
-    
+
     def find_by_username(self, username):
         """Palauttaa käyttäjän käyttäjätunnuksen perusteella tietokannasta.
 

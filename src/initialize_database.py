@@ -37,7 +37,6 @@ def create_tables(connection):
 
 def initialize_database():
     """Alustaa tietokantataulut."""
-    
     connection = get_database_connection()
     drop_tables(connection)
     create_tables(connection)
