@@ -71,3 +71,4 @@ Tiedoston [.pylintrc](./.pylintrc) määrittämät tarkastukset voi suorittaa ko
 ```bash
 poetry run invoke lint
 ```
+**[Ylimääräinen koodikatselmointi](https://github.com/jakubgrad/ot-harjoitustyo)**
