@@ -8,6 +8,9 @@ from repositories.user_repository import (
 class UsernameExistsError(Exception):
     pass
 
+class InvalidCredentialsError(Exception):
+    pass
+
 
 class Service:
     """Sovelluslogiikasta vastaava luokka."""
@@ -60,6 +63,28 @@ class Service:
 
         if login:
             self._user = user
+
+        return user
+    
+    def login(self, username, password):
+        """Kirjaa käyttäjän sisään sovellukseen.
+
+        Args:
+            username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+            password: Merkkijonoarvo, joka kuvastaa käyttäjän salasanaa.
+        Returns:
+            Kirjaa käyttäjän sisään User-olion muodossa.
+        Raises:
+            InvalidCredentialsError:
+                Virhe, jos käyttäjätunnus ja salasana eivät täsmää.
+        """
+
+        user = self._user_repository.find_by_username(username)
+
+        if not user or user.password != password:
+            raise InvalidCredentialsError("Invalid username or password")
+
+        self._user = user
 
         return user
 

@@ -2,6 +2,7 @@ from tkinter import Tk, ttk, constants
 from tkinter.font import BOLD, Font
 from ui.login_view import LoginView
 from ui.create_user_view import CreateUserView
+from ui.calender_view import CalenderView
 
 
 class UI:
@@ -26,7 +27,8 @@ class UI:
 
         self._current_view = LoginView(
             self._root,
-            self._show_create_user_view
+            self._show_create_user_view,
+            self._show_calender_view
         )
 
         self._current_view.pack()
@@ -46,4 +48,13 @@ class UI:
             self._show_login_view
         )
 
+        self._current_view.pack()
+
+    def _show_calender_view(self):
+        self._hide_current_view()
+
+        self._current_view = CalenderView(
+            self._root
+        )
+        
         self._current_view.pack()
