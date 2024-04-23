@@ -15,3 +15,10 @@
 - Lisätty virheilmoituksia rekisteröintiin
 - Lisätty Service-luokka, joka vastaa sovelluslogiikasta
 - Testattu Service ja UserRepository -luokkia monipuolisesti
+
+## Viikko 5
+
+- Käyttäjä voi kirjautua sisään ja ulos
+- Lisätty virheilmoitukset sisäänkirjautumiseen
+- Lisätty ajanvarauskalenteri näkyväksi kirjautuneelle käyttäjälle
+- Testattu Service-luokka käyttäjän sisään- ja uloskirjautumisen sekä virheilmoitusten osalta

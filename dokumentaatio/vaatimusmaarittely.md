@@ -24,13 +24,13 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
   - Käyttäjätunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä ja ei saa sisältää välilyöntejä **"tehty"**
   - Salasana syötetään rekisteröityessä kahdesti ja sen täytyy olla molemmilla kerroilla sama **"tehty"**
     - Salasana ei saa sisältää välilyöntejä ja täytyy olla vähintään 3 merkkiä pitkä **"tehty"**
-- Käyttäjä voi kirjautua järjestelmään
-  - Kirjautuminen onnistuu kirjoittaessa jo olemassaolevat käyttäjätunnus ja salasana kirjautumislomakkeelle
-  - Jos käyttäjää ei ole olemassa tai salasana ei täsmää, antaa järjestelmä virheilmoituksen
+- Käyttäjä voi kirjautua järjestelmään **"tehty"**
+  - Kirjautuminen onnistuu kirjoittaessa jo olemassaolevat käyttäjätunnus ja salasana kirjautumislomakkeelle **"tehty"**
+  - Jos käyttäjää ei ole olemassa tai salasana ei täsmää, antaa järjestelmä virheilmoituksen **"tehty"**
 
 ### Kirjautumisen jälkeen
 
-- Käyttäjä näkee varauskalenterin
+- Käyttäjä näkee varauskalenterin **"tehty"**
   - Käyttäjä voi vaihtaa varauskohdetta ylhäältä klikkaamalla ja valitsemalla haluamansa
 - Käyttäjä voi varata vapaana olevan ajan, mutta vain tunniksi per päivä per varauskohde
 - Käyttäjä voi peruuttaa tekemänsä varauksen

@@ -9,4 +9,7 @@
 | 16.4  | 2    | käyttäjän rekisteröityminen/virheilmoitukset |
 |       | 1    | testaus |
 |       | 2    | pylint, dokumentaatio |
-| yht   | 12   | | 
+| 22.4. | 2    | käyttäjän kirjautuminen |
+| 23.4. | 2    | ulos kirjautuminen, kalenteri |
+|       | 2    | testaus, formatointi dokumentaatio |
+| yht   | 18   | | 
