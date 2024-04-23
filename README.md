@@ -16,6 +16,10 @@ Sovelluksen toiminta on testattu Python-versiolla `3.10`. Jos Python-versiosi on
 * [Changelog](./dokumentaatio/changelog.md)
 * [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
+## Releases
+
+* [Release-1](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 
 1. Asenna riippuvuudet komennolla:
