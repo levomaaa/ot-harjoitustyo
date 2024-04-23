@@ -1,6 +1,6 @@
 import unittest
 from entities.user import User
-from services.service import UsernameExistsError, Service
+from services.service import UsernameExistsError, Service, InvalidCredentialsError
 
 
 class FakeUserRepository:
@@ -48,5 +48,39 @@ class TestService(unittest.TestCase):
 
         self.assertRaises(
             UsernameExistsError,
-            lambda: self.service.create_user(username, '1234')
+            lambda: self.service.create_user(username, password)
         )
+
+    def test_login_with_valid_credentials(self):
+        self.service.create_user(
+            self.user_aapeli.username,
+            self.user_aapeli.password
+        )
+
+        user = self.service.login(
+            self.user_aapeli.username,
+            self.user_aapeli.password
+        )
+
+        self.assertEqual(user.username, self.user_aapeli.username)
+
+    def test_login_with_invalid_credentials(self):
+        self.assertRaises(
+            InvalidCredentialsError,
+            lambda: self.service.login('Messi', '#10')
+        )
+    
+    def test_logout(self):
+        self.service.create_user(
+            self.user_aapeli.username,
+            self.user_aapeli.password
+        )
+
+        self.service.login(
+            self.user_aapeli.username,
+            self.user_aapeli.password
+        )
+
+        self.service.logout()
+
+        self.assertEqual(self.service._user, None)
