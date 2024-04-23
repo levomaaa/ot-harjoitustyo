@@ -60,7 +60,8 @@ class LoginView:
         password_label = ttk.Label(master=self._frame, text="Password")
         self._password_entry = ttk.Entry(master=self._frame, show='*')
 
-        login_button = ttk.Button(master=self._frame, text="Login", command=self._login_handler)
+        login_button = ttk.Button(
+            master=self._frame, text="Login", command=self._login_handler)
         register_button = ttk.Button(
             master=self._frame, text="Create a new user", command=self._handle_show_create_user_view)
 
@@ -76,3 +77,4 @@ class LoginView:
         register_button.grid(columnspan=2, sticky=(
             constants.E, constants.W), padx=5, pady=5)
         self._frame.grid_columnconfigure(1, weight=1, minsize=350)
+        

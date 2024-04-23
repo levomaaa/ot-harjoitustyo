@@ -8,6 +8,7 @@ from repositories.user_repository import (
 class UsernameExistsError(Exception):
     pass
 
+
 class InvalidCredentialsError(Exception):
     pass
 
@@ -65,7 +66,7 @@ class Service:
             self._user = user
 
         return user
-    
+
     def login(self, username, password):
         """Kirjaa käyttäjän sisään sovellukseen.
 
@@ -87,7 +88,7 @@ class Service:
         self._user = user
 
         return user
-    
+
     def logout(self):
         """Kirjaa käyttäjän ulos järjestelmästä.
         """

@@ -69,7 +69,7 @@ class TestService(unittest.TestCase):
             InvalidCredentialsError,
             lambda: self.service.login('Messi', '#10')
         )
-    
+
     def test_logout(self):
         self.service.create_user(
             self.user_aapeli.username,

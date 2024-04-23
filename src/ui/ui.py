@@ -57,5 +57,5 @@ class UI:
             self._root,
             self._show_login_view
         )
-        
+
         self._current_view.pack()
