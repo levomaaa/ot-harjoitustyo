@@ -87,6 +87,11 @@ class Service:
         self._user = user
 
         return user
+    
+    def logout(self):
+        """Kirjaa käyttäjän ulos järjestelmästä.
+        """
+        self._user = None
 
 
 service = Service()
