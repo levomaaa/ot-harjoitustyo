@@ -94,5 +94,12 @@ class Service:
         """
         self._user = None
 
+    def get_current_user(self):
+        """Palauttaa sisään kirjautunen käyttäjän.
+
+        Returns:
+            Kirjautunut käyttäjä User-oliona.
+        """
+        return self._user
 
 service = Service()

@@ -19,6 +19,7 @@ class CalenderView:
         self._root = root
         self._frame = None
         self._handle_logout = handle_logout
+        self._user = service.get_current_user()
 
         self._initialize_fields()
 
@@ -41,6 +42,7 @@ class CalenderView:
             master=self._frame, text="Calendar", font=("Arial", 25))
         logout_button = ttk.Button(
             master=self._frame, text="Logout", command=self._logout_handler)
+        user_label = ttk.Label(master=self._frame, font=("Arial", 16), text=f"Logged in as {self._user.username}")
 
         # ChatGPT generated code begins
         cal_frame = ttk.Frame(master=self._frame)
@@ -48,18 +50,20 @@ class CalenderView:
                        selectmode="day", date_pattern="yyyy-mm-dd")
         cal.pack(pady=20, fill="both", expand=True)
         cal.bind("<<CalendarSelected>>", self._open_day_schedule)
-        cal_frame.grid(row=2, columnspan=2, padx=5, pady=5)
+        cal_frame.grid(row=3, columnspan=2, padx=5, pady=5)
         # ChatGPT generated code ends
 
         self.selected_date = ttk.Label(self._frame, text="")
-        self.selected_date.grid(row=3, columnspan=2, pady=10)
+        self.selected_date.grid(row=4, columnspan=2, pady=10)
 
-        logout_button.grid(row=1, columnspan=2, sticky=(
+        logout_button.grid(row=2, columnspan=2, sticky=(
             constants.E, constants.N), padx=5, pady=5)
         heading_label.grid(row=0, columnspan=2,
                            sticky=constants.N, padx=8, pady=8)
+        user_label.grid(row=1, columnspan=2, sticky=(
+            constants.E, constants.N), padx=5, pady=5)
 
-        self._frame.grid_columnconfigure(1, weight=1, minsize=700)
+        self._frame.grid_columnconfigure(1, weight=1, minsize=600)
 
         # ChatGPT generated code begins
         screen_width = self._root.winfo_screenwidth()
@@ -79,24 +83,25 @@ class CalenderView:
 
         schedule_window = tk.Toplevel(self._root)
         schedule_window.title(selected_date)
-        schedule_window_width = 400
-        schedule_window_height = 450
-        screen_width = schedule_window.winfo_screenwidth()
-        screen_height = schedule_window.winfo_screenheight()
-        x_coordinate = int((screen_width - schedule_window_width) / 2)
-        y_coordinate = int((screen_height - schedule_window_height) / 2)
-        schedule_window.geometry(
-            f"{schedule_window_width}x{schedule_window_height}+{x_coordinate}+{y_coordinate}")
 
         schedule_frame = ttk.Frame(schedule_window)
         schedule_frame.pack(fill="both", expand=True)
+        # ChatGPT generated code ends
 
         for hour in range(7, 22):
             hour_label = ttk.Label(
-                schedule_frame, text=f"{hour:02}:00 - {hour + 1:02}:00")
+                schedule_frame, text=f"{hour:02}:00 - {hour + 1:02}:00", borderwidth=3, relief="solid", padding=5)
+            reserve_label = ttk.Label(
+                schedule_frame, text="Reserved for Aapo", foreground="red")
+            reserve_button = ttk.Button(
+                master=schedule_frame, text="Reserve")
             hour_label.grid(row=hour, column=0, padx=10, pady=5)
+            reserve_button.grid(row=hour, column=2, padx=10, pady=5)
+            reserve_label.grid(row=hour, column=1, padx=10, pady=5)
 
-        schedule_frame.grid_columnconfigure(1, weight=1, minsize=350)
+        
+        # ChatGPT generated code begins
+        schedule_frame.grid_columnconfigure(3, weight=1)
 
         def show_root_window():
             self._root.deiconify()
