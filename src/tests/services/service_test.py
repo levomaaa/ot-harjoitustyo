@@ -1,6 +1,6 @@
 import unittest
 from entities.user import User
-from services.service import UsernameExistsError, Service, InvalidCredentialsError
+from services.user_service import UsernameExistsError, UserService, InvalidCredentialsError
 
 
 class FakeUserRepository:
@@ -26,16 +26,16 @@ class FakeUserRepository:
             return None
 
 
-class TestService(unittest.TestCase):
+class TestUserService(unittest.TestCase):
     def setUp(self):
-        self.service = Service(FakeUserRepository())
+        self.user_service = UserService(FakeUserRepository())
         self.user_aapeli = User('Aapeli', '1234')
 
     def test_create_user(self):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
-        self.service.create_user(username, password)
-        users = self.service.get_users()
+        self.user_service.create_user(username, password)
+        users = self.user_service.get_users()
 
         self.assertEqual(len(users), 1)
         self.assertEqual(users[0].username, username)
@@ -44,20 +44,20 @@ class TestService(unittest.TestCase):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
 
-        self.service.create_user(username, password)
+        self.user_service.create_user(username, password)
 
         self.assertRaises(
             UsernameExistsError,
-            lambda: self.service.create_user(username, password)
+            lambda: self.user_service.create_user(username, password)
         )
 
     def test_login_with_valid_credentials(self):
-        self.service.create_user(
+        self.user_service.create_user(
             self.user_aapeli.username,
             self.user_aapeli.password
         )
 
-        user = self.service.login(
+        user = self.user_service.login(
             self.user_aapeli.username,
             self.user_aapeli.password
         )
@@ -67,20 +67,20 @@ class TestService(unittest.TestCase):
     def test_login_with_invalid_credentials(self):
         self.assertRaises(
             InvalidCredentialsError,
-            lambda: self.service.login('Messi', '#10')
+            lambda: self.user_service.login('Messi', '#10')
         )
 
     def test_logout(self):
-        self.service.create_user(
+        self.user_service.create_user(
             self.user_aapeli.username,
             self.user_aapeli.password
         )
 
-        self.service.login(
+        self.user_service.login(
             self.user_aapeli.username,
             self.user_aapeli.password
         )
 
-        self.service.logout()
+        self.user_service.logout()
 
-        self.assertEqual(self.service._user, None)
+        self.assertEqual(self.user_service._user, None)

@@ -1,6 +1,6 @@
 from tkinter import Tk, ttk, constants, messagebox
 from tkinter.font import BOLD, Font
-from services.service import service, InvalidCredentialsError
+from services.user_service import user_service, InvalidCredentialsError
 
 
 class LoginView:
@@ -40,7 +40,7 @@ class LoginView:
         password = self._password_entry.get()
 
         try:
-            service.login(username, password)
+            user_service.login(username, password)
             self._handle_login()
         except InvalidCredentialsError:
             self._show_error("Invalid username or password")

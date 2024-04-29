@@ -13,7 +13,7 @@ class InvalidCredentialsError(Exception):
     pass
 
 
-class Service:
+class UserService:
     """Sovelluslogiikasta vastaava luokka."""
 
     def __init__(
@@ -102,4 +102,4 @@ class Service:
         """
         return self._user
 
-service = Service()
+user_service = UserService()

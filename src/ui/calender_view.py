@@ -1,7 +1,7 @@
 from tkinter import ttk, constants
 from tkcalendar import Calendar
 import tkinter as tk
-from services.service import service
+from services.user_service import user_service
 from services.reservation_service import reservation_service
 
 
@@ -20,7 +20,7 @@ class CalenderView:
         self._root = root
         self._frame = None
         self._handle_logout = handle_logout
-        self._user = service.get_current_user()
+        self._user = user_service.get_current_user()
         self._handle_create_reservation = handle_create_reservation
 
 
@@ -35,7 +35,7 @@ class CalenderView:
         self._frame.destroy()
 
     def _logout_handler(self):
-        service.logout()
+        user_service.logout()
         self._handle_logout()
 
     def _create_reservation_handler(self, selected_date):
