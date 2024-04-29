@@ -14,6 +14,10 @@ def drop_tables(connection):
         drop table if exists users;
     ''')
 
+    cursor.execute('''
+        drop table if exists reservations;
+    ''')
+
     connection.commit()
 
 
@@ -29,6 +33,16 @@ def create_tables(connection):
         create table users (
             username text primary key,
             password text
+        );
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE reservations ( 
+            id integer primary key,
+            username text,
+            date text,
+            hour integer, 
+            FOREIGN KEY(username) REFERENCES users(username)   
         );
     ''')
 

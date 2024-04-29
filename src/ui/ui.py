@@ -55,7 +55,8 @@ class UI:
 
         self._current_view = CalenderView(
             self._root,
-            self._show_login_view
+            self._show_login_view,
+            self._show_calender_view
         )
 
         self._current_view.pack()

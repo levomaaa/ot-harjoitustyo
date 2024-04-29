@@ -2,12 +2,13 @@ from tkinter import ttk, constants
 from tkcalendar import Calendar
 import tkinter as tk
 from services.service import service
+from services.reservation_service import reservation_service
 
 
 class CalenderView:
     """Ajanvarauskalenterista vastaava näkymä"""
 
-    def __init__(self, root, handle_logout):
+    def __init__(self, root, handle_logout, handle_create_reservation):
         """Luokan konstruktori. Luo uuden tehtävälistausnäkymän.
 
         Args:
@@ -20,6 +21,8 @@ class CalenderView:
         self._frame = None
         self._handle_logout = handle_logout
         self._user = service.get_current_user()
+        self._handle_create_reservation = handle_create_reservation
+
 
         self._initialize_fields()
 
@@ -34,6 +37,15 @@ class CalenderView:
     def _logout_handler(self):
         service.logout()
         self._handle_logout()
+
+    def _create_reservation_handler(self, selected_date):
+        username = self._user.username
+        date = selected_date
+        hour = "0" #TODO
+        
+        reservation_service.create_reservation(username, date, hour)
+        self._handle_create_reservation()
+
 
     def _initialize_fields(self):
         self._frame = ttk.Frame(master=self._root)
@@ -94,7 +106,7 @@ class CalenderView:
             reserve_label = ttk.Label(
                 schedule_frame, text="Reserved for Aapo", foreground="red")
             reserve_button = ttk.Button(
-                master=schedule_frame, text="Reserve")
+                master=schedule_frame, text="Reserve", command=self._create_reservation_handler(selected_date))
             hour_label.grid(row=hour, column=0, padx=10, pady=5)
             reserve_button.grid(row=hour, column=2, padx=10, pady=5)
             reserve_label.grid(row=hour, column=1, padx=10, pady=5)
