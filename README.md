@@ -19,6 +19,7 @@ Sovelluksen toiminta on testattu Python-versiolla `3.10`. Jos Python-versiosi on
 ## Releases
 
 * [Release-1](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko5)
+* [Release-2](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Asennus
 
