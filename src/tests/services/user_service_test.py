@@ -31,6 +31,11 @@ class TestUserService(unittest.TestCase):
         self.user_service = UserService(FakeUserRepository())
         self.user_aapeli = User('Aapeli', '1234')
 
+    def login_user(self, user):
+        self.user_service.create_user(user.username, user.password)
+        self.user_service.login(user.username, user.password)
+
+
     def test_create_user(self):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
@@ -71,16 +76,15 @@ class TestUserService(unittest.TestCase):
         )
 
     def test_logout(self):
-        self.user_service.create_user(
-            self.user_aapeli.username,
-            self.user_aapeli.password
-        )
-
-        self.user_service.login(
-            self.user_aapeli.username,
-            self.user_aapeli.password
-        )
+        self.login_user(self.user_aapeli)
 
         self.user_service.logout()
 
         self.assertEqual(self.user_service._user, None)
+
+    def test_get_current_user(self):
+        self.login_user(self.user_aapeli)
+
+        current_user = self.user_service.get_current_user()
+
+        self.assertEqual(current_user.username, self.user_aapeli.username)

@@ -37,9 +37,26 @@ class ReservationService:
         return reservation
     
     def reservation_user(self, date, hour):
+        """Etsii ajanvarauksen tehneen käyttäjän nimen.
+
+        Args:
+            date: Merkkijonoarvo, joka kuvastaa päivämäärää.
+            hour: Numero, joka kuvastaa ajanvarauksen alkavaa tuntia.
+
+        Returns:
+            Palauttaa ajanvarauksen tehneen käyttäjän nimen.
+        """
         username = ""
         reservation = self._reservation_repository.find_username(Reservation(username, date, hour))
         
         return reservation
+    
+    def get_reservations(self):
+        """Palauttaa listan kaikista ajanvarauksista.
+
+        Returns:
+            Reservation-oliota sisältävä lista ajanvarauksista.
+        """
+        return self._reservation_repository.find_all()
     
 reservation_service = ReservationService()

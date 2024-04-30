@@ -34,7 +34,7 @@ class UserService:
         """Palauttaa listan kaikista käyttäjistä.
 
         Returns:
-            User-oliota sisältä lista käyttäjistä.
+            User-oliota sisältävä lista käyttäjistä.
         """
         return self._user_repository.find_all()
 
