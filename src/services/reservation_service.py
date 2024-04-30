@@ -5,7 +5,7 @@ from repositories.reservation_repository import (
 
 
 class ReservationService:
-    """Sovelluslogiikasta vastaava luokka."""
+    """Ajanvarausten sovelluslogiikasta vastaava luokka."""
 
     def __init__(
         self,
@@ -32,10 +32,11 @@ class ReservationService:
             Luo ajanvarauksen Reservation-olion muodossa.
         """
 
-        reservation = self._reservation_repository.create_reservation(Reservation(username, date, hour))
+        reservation = self._reservation_repository.create_reservation(
+            Reservation(username, date, hour))
 
         return reservation
-    
+
     def reservation_user(self, date, hour):
         """Etsii ajanvarauksen tehneen käyttäjän nimen.
 
@@ -47,10 +48,11 @@ class ReservationService:
             Palauttaa ajanvarauksen tehneen käyttäjän nimen.
         """
         username = ""
-        reservation = self._reservation_repository.find_username(Reservation(username, date, hour))
-        
+        reservation = self._reservation_repository.find_username(
+            Reservation(username, date, hour))
+
         return reservation
-    
+
     def get_reservations(self):
         """Palauttaa listan kaikista ajanvarauksista.
 
@@ -58,5 +60,6 @@ class ReservationService:
             Reservation-oliota sisältävä lista ajanvarauksista.
         """
         return self._reservation_repository.find_all()
-    
+
+
 reservation_service = ReservationService()

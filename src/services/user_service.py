@@ -14,7 +14,7 @@ class InvalidCredentialsError(Exception):
 
 
 class UserService:
-    """Sovelluslogiikasta vastaava luokka."""
+    """Käyttäjien sovelluslogiikasta vastaava luokka."""
 
     def __init__(
         self,
@@ -101,5 +101,6 @@ class UserService:
             Kirjautunut käyttäjä User-oliona.
         """
         return self._user
+
 
 user_service = UserService()

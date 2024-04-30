@@ -13,7 +13,7 @@ class FakeReservationRepository:
 
     def find_all(self):
         return self.reservations
-    
+
     def find_username(self, reservation_obj):
         filter_reservations = filter(
             lambda reservation: reservation.hour == reservation_obj.hour and reservation.date == reservation_obj.date,
@@ -25,11 +25,11 @@ class FakeReservationRepository:
         else:
             return None
 
-    
 
 class TestReservationService(unittest.TestCase):
     def setUp(self):
-        self.reservation_service = ReservationService(FakeReservationRepository())
+        self.reservation_service = ReservationService(
+            FakeReservationRepository())
         self.reservation = Reservation('Aapeli', '2040-10-11', 12)
 
     def test_reservation_user(self):
@@ -39,7 +39,8 @@ class TestReservationService(unittest.TestCase):
         self.reservation_service.create_reservation(username, date, hour)
 
         reservations = self.reservation_service.get_reservations()
-        returned_username = self.reservation_service.reservation_user(date, hour)
+        returned_username = self.reservation_service.reservation_user(
+            date, hour)
 
         self.assertEqual(len(reservations), 1)
         self.assertEqual(reservations[0].username, returned_username)

@@ -16,7 +16,7 @@ class TestReservationRepository(unittest.TestCase):
         self.assertEqual(reservations[0].username, self.reservation.username)
         self.assertEqual(reservations[0].date, self.reservation.date)
         self.assertEqual(reservations[0].hour, self.reservation.hour)
-     
+
     def test_find_username_if_exists(self):
         reservation_repository.create_reservation(self.reservation)
         username = reservation_repository.find_username(self.reservation)

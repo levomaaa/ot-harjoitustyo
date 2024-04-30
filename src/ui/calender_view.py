@@ -23,7 +23,6 @@ class CalenderView:
         self._user = user_service.get_current_user()
         self._handle_create_reservation = handle_create_reservation
 
-
         self._initialize_fields()
 
     def pack(self):
@@ -42,13 +41,12 @@ class CalenderView:
         username = self._user.username
         date = selected_date
         hour = hour
-        
+
         reservation_service.create_reservation(username, date, hour)
         self._handle_create_reservation()
-    
+
     def _username_for_reservation(self, selected_date, hour):
         return reservation_service.reservation_user(selected_date, hour)
-
 
     def _initialize_fields(self):
         self._frame = ttk.Frame(master=self._root)
@@ -57,7 +55,8 @@ class CalenderView:
             master=self._frame, text="Calendar", font=("Arial", 25))
         logout_button = ttk.Button(
             master=self._frame, text="Logout", command=self._logout_handler)
-        user_label = ttk.Label(master=self._frame, font=("Arial", 16), text=f"Logged in as {self._user.username}")
+        user_label = ttk.Label(master=self._frame, font=(
+            "Arial", 16), text=f"Logged in as {self._user.username}")
 
         # ChatGPT generated code begins
         cal_frame = ttk.Frame(master=self._frame)
@@ -111,8 +110,9 @@ class CalenderView:
         for hour in range(7, 22):
             hour_label = ttk.Label(
                 schedule_frame, text=f"{hour:02}:00 - {hour + 1:02}:00", borderwidth=3, relief="solid", padding=5)
-            
-            username_for_reservation = self._username_for_reservation(selected_date, hour)
+
+            username_for_reservation = self._username_for_reservation(
+                selected_date, hour)
 
             if username_for_reservation == None:
                 reserve_label = ttk.Label(
@@ -120,7 +120,7 @@ class CalenderView:
             else:
                 reserve_label = ttk.Label(
                     schedule_frame, text=username_for_reservation, foreground="red")
-            
+
             reserve_button = ttk.Button(
                 master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_confirm_message()])
             row_number = hour - 7
@@ -128,7 +128,6 @@ class CalenderView:
             reserve_button.grid(row=row_number, column=2, padx=10, pady=5)
             reserve_label.grid(row=row_number, column=1, padx=10, pady=5)
 
-        
         # ChatGPT generated code begins
         schedule_frame.grid_columnconfigure(3, weight=1)
 
@@ -138,5 +137,3 @@ class CalenderView:
 
         schedule_window.protocol("WM_DELETE_WINDOW", _show_root_window)
         # ChatGPT generated code ends
-
-        

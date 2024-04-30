@@ -77,4 +77,3 @@ class LoginView:
         register_button.grid(columnspan=2, sticky=(
             constants.E, constants.W), padx=5, pady=5)
         self._frame.grid_columnconfigure(1, weight=1, minsize=350)
-        

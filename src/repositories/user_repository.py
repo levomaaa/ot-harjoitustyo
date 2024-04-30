@@ -3,6 +3,14 @@ from database_connection import get_database_connection
 
 
 def get_user_by_row(row):
+    """ Etsii käyttäjän annetun rivin tiedoilla.
+
+    Args:
+        row: Tietokantaoperaation palauttama rivi tietoa.
+
+    Returns: 
+        Rivin tiedot User-oliona.
+    """
     return User(row["username"], row["password"]) if row else None
 
 

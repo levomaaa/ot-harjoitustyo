@@ -1,6 +1,7 @@
 from database_connection import get_database_connection
 from entities.reservation import Reservation
 
+
 def get_reservation_by_row(row):
     return Reservation(row["username"], row["date"], row["hour"]) if row else None
 
@@ -17,7 +18,7 @@ class ReservationRepository:
         """
 
         self._connection = connection
-    
+
     def create_reservation(self, reservation):
         """Luo ajanvarauksen tietokantaan.
 
@@ -38,10 +39,17 @@ class ReservationRepository:
         self._connection.commit()
 
         return reservation
-    
+
     def find_username(self, reservation):
-        
-        
+        """Etsii tietokannasta ajanvarauksen luoneen käyttäjän nimen.
+
+        Args:
+            reservation: Tarkistettava ajanvaraus Reservation-oliona.
+
+        Returns:
+            Ajanvarauksen luoneen käyttäjän nimi.
+        """
+
         cursor = self._connection.cursor()
 
         cursor.execute(
@@ -52,10 +60,10 @@ class ReservationRepository:
         row = cursor.fetchone()
         if row is None:
             return None
-        else:
-            username = row["username"]
-            return username
-    
+
+        username = row["username"]
+        return username
+
     def delete_all(self):
         """Poistaa kaikki ajanvaraukset tietokannasta.
         """
@@ -80,5 +88,6 @@ class ReservationRepository:
         rows = cursor.fetchall()
 
         return list(map(get_reservation_by_row, rows))
-    
+
+
 reservation_repository = ReservationRepository(get_database_connection())

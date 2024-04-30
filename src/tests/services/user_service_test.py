@@ -35,7 +35,6 @@ class TestUserService(unittest.TestCase):
         self.user_service.create_user(user.username, user.password)
         self.user_service.login(user.username, user.password)
 
-
     def test_create_user(self):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
