@@ -12,4 +12,8 @@
 | 22.4. | 2    | käyttäjän kirjautuminen |
 | 23.4. | 2    | ulos kirjautuminen, kalenteri |
 |       | 2    | testaus, formatointi dokumentaatio |
-| yht   | 18   | | 
+| 29.4. | 3    | ajan varaaminen |
+| 30.4. | 3    | ajan varaaminen |
+|       | 1    | testaus |
+|       | 2    | dokumentaatio |
+| yht   | 27   | | 
