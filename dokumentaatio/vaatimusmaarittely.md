@@ -32,9 +32,9 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
 
 - Käyttäjä näkee varauskalenterin **"tehty"**
   - Käyttäjä voi vaihtaa varauskohdetta ylhäältä klikkaamalla ja valitsemalla haluamansa
-- Käyttäjä voi varata vapaana olevan ajan, mutta vain tunniksi per päivä per varauskohde
+- Käyttäjä voi varata vapaana olevan ajan **"tehty"**, mutta vain tunniksi per päivä per varauskohde
 - Käyttäjä voi peruuttaa tekemänsä varauksen
-- Käyttäjä voi kirjautua ulos järjestelmästä
+- Käyttäjä voi kirjautua ulos järjestelmästä **"tehty"**
 
 - Käyttäjän ollessa lisäksi ylläpitäjä:
   - Ylläpitäjä voi peruuttaa kenen tahansa varauksen
