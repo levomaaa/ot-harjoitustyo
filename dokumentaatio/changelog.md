@@ -22,3 +22,12 @@
 - Lisätty virheilmoitukset sisäänkirjautumiseen
 - Lisätty ajanvarauskalenteri näkyväksi kirjautuneelle käyttäjälle
 - Testattu Service-luokka käyttäjän sisään- ja uloskirjautumisen sekä virheilmoitusten osalta
+
+## Viikko 5
+
+- Vaihdettu Service-luokan nimeksi UserService, vastaamaan käyttäjän sovelluslogiikasta
+- Lisätty ReservationService-luokka, joka vastaa ajanvarausten sovelluslogiikasta
+- Lisätty ReservationRepository-luokka, joka vastaa ajanvarausten tallentamisesta tietokantaan
+- Lisätty Reservation-luokka, joka vastaa yksittäisestä ajanvarauksesta
+- Käyttäjä voi tehdä ajanvarauksen
+- Testattu ReservationService ja ReservationRepository -luokkia monipuolisesti
