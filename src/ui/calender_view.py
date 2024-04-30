@@ -1,4 +1,4 @@
-from tkinter import ttk, constants
+from tkinter import ttk, constants, messagebox
 from tkcalendar import Calendar
 import tkinter as tk
 from services.user_service import user_service
@@ -38,13 +38,16 @@ class CalenderView:
         user_service.logout()
         self._handle_logout()
 
-    def _create_reservation_handler(self, selected_date):
+    def _create_reservation_handler(self, selected_date, hour):
         username = self._user.username
         date = selected_date
-        hour = "0" #TODO
+        hour = hour
         
         reservation_service.create_reservation(username, date, hour)
         self._handle_create_reservation()
+    
+    def _username_for_reservation(self, selected_date, hour):
+        return reservation_service.reservation_user(selected_date, hour)
 
 
     def _initialize_fields(self):
@@ -100,25 +103,40 @@ class CalenderView:
         schedule_frame.pack(fill="both", expand=True)
         # ChatGPT generated code ends
 
+        def _show_confirm_message():
+            schedule_window.destroy()
+            messagebox.showinfo('Info', "Reservation created successfully!")
+            self._root.deiconify()
+
         for hour in range(7, 22):
             hour_label = ttk.Label(
                 schedule_frame, text=f"{hour:02}:00 - {hour + 1:02}:00", borderwidth=3, relief="solid", padding=5)
-            reserve_label = ttk.Label(
-                schedule_frame, text="Reserved for Aapo", foreground="red")
+            
+            username_for_reservation = self._username_for_reservation(selected_date, hour)
+
+            if username_for_reservation == None:
+                reserve_label = ttk.Label(
+                    schedule_frame, text="Not reserved", foreground="green")
+            else:
+                reserve_label = ttk.Label(
+                    schedule_frame, text=username_for_reservation, foreground="red")
+            
             reserve_button = ttk.Button(
-                master=schedule_frame, text="Reserve", command=self._create_reservation_handler(selected_date))
-            hour_label.grid(row=hour, column=0, padx=10, pady=5)
-            reserve_button.grid(row=hour, column=2, padx=10, pady=5)
-            reserve_label.grid(row=hour, column=1, padx=10, pady=5)
+                master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_confirm_message()])
+            row_number = hour - 7
+            hour_label.grid(row=row_number, column=0, padx=10, pady=5)
+            reserve_button.grid(row=row_number, column=2, padx=10, pady=5)
+            reserve_label.grid(row=row_number, column=1, padx=10, pady=5)
 
         
         # ChatGPT generated code begins
         schedule_frame.grid_columnconfigure(3, weight=1)
 
-        def show_root_window():
+        def _show_root_window():
             self._root.deiconify()
             schedule_window.destroy()
 
-        schedule_window.protocol("WM_DELETE_WINDOW", show_root_window)
+        schedule_window.protocol("WM_DELETE_WINDOW", _show_root_window)
         # ChatGPT generated code ends
+
         

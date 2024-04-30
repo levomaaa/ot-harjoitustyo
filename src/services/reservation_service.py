@@ -36,4 +36,10 @@ class ReservationService:
 
         return reservation
     
+    def reservation_user(self, date, hour):
+        username = ""
+        reservation = self._reservation_repository.find_username(Reservation(username, date, hour))
+        
+        return reservation
+    
 reservation_service = ReservationService()
