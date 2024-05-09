@@ -53,6 +53,26 @@ class ReservationRepository:
 
         self._connection.commit()
 
+    def check_reservation(self, username, date):
+        """Etsii tietokannasta käyttäjän ajanvarauksen tietyltä päivältä.
+
+        Args:
+            username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+            date: Merkkijonoarvo, joka kuvastaa päivämäärää.
+            
+        Returns:
+            Käyttäjän tekemä ajanvaraus tai None.
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            "select * from reservations where username = ? and date = ?",
+            (username, date)
+        )
+        return cursor.fetchone()
+
+
     def find_username(self, reservation):
         """Etsii tietokannasta ajanvarauksen luoneen käyttäjän nimen.
 

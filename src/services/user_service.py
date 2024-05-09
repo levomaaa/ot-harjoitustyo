@@ -38,15 +38,12 @@ class UserService:
         """
         return self._user_repository.find_all()
 
-    def create_user(self, username, password, login=True):
+    def create_user(self, username, password):
         """Luo uuden käyttäjän ja kirjaa sen sisään.
 
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
             password: Merkkijonoarvo, joka kuvastaa käyttäjän salasanaa.
-            login:
-                Oletusarvo True.
-                Boolean-arvo, joka kertoo kirjataanko käyttäjä sisään onnistuneen luonnin jälkeen.
 
         Raises:
             UsernameExistsError: Virhe, joka tapahtuu, jos käyttäjätunnus on jo käytössä.
@@ -61,9 +58,6 @@ class UserService:
             raise UsernameExistsError(f"Username {username} already exists")
 
         user = self._user_repository.create(User(username, password))
-
-        if login:
-            self._user = user
 
         return user
 

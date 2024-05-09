@@ -36,14 +36,23 @@ class CalenderView:
     def _logout_handler(self):
         user_service.logout()
         self._handle_logout()
+        
+    def _has_reservation_handler(self, date):
+        return reservation_service.check_reservation(self._user.username, date)
 
     def _create_reservation_handler(self, selected_date, hour):
         username = self._user.username
         date = selected_date
         hour = hour
 
-        reservation_service.create_reservation(username, date, hour)
-        self._handle_create_reservation()
+        if self._has_reservation_handler(date) == True:
+            return False
+        else:
+            reservation_service.create_reservation(username, date, hour)
+            self._handle_create_reservation()
+            return True
+
+
 
     def _create_cancel_handler(self, selected_date, hour):
         username = self._user.username
@@ -110,7 +119,7 @@ class CalenderView:
         schedule_frame.pack(fill="both", expand=True)
         # ChatGPT generated code ends
 
-        def _show_confirm_message(text):
+        def _show_message(text):
             schedule_window.destroy()
             messagebox.showinfo('Info', text)
             self._root.deiconify()
@@ -125,10 +134,14 @@ class CalenderView:
             row_number = hour - 7
 
             if username_for_reservation == None:
+                if self._has_reservation_handler(selected_date) == True:
+                    text = "You already have a reservation for this day!"
+                else:
+                    text = "Reservation created successfully!"
                 reserve_label = ttk.Label(
                     schedule_frame, text="Not reserved", foreground="green")
                 reserve_button = ttk.Button(
-                    master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_confirm_message("Reservation created successfully!")])
+                    master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_message(text)])
                 reserve_button.grid(row=row_number, column=2, padx=10, pady=5)
 
             else:
@@ -136,7 +149,7 @@ class CalenderView:
                     schedule_frame, text=username_for_reservation, foreground="red")
                 if username_for_reservation == self._user.username:
                     cancel_button = ttk.Button(
-                        master=schedule_frame, text="Cancel reservation", command=lambda hour=hour: [self._create_cancel_handler(selected_date, hour), _show_confirm_message("Reservation cancelled succesfully!")])
+                        master=schedule_frame, text="Cancel reservation", command=lambda hour=hour: [self._create_cancel_handler(selected_date, hour), _show_message("Reservation cancelled succesfully!")])
                     cancel_button.grid(row=row_number, column=2, padx=10, pady=5)
 
 
