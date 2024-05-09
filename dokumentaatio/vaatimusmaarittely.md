@@ -20,26 +20,27 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
 
 ### Ennen kirjautumista
 
-- Käyttäjä voi luoda järjestelmään käyttäjätunnuksen **"tehty"**
-  - Käyttäjätunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä ja ei saa sisältää välilyöntejä **"tehty"**
-  - Salasana syötetään rekisteröityessä kahdesti ja sen täytyy olla molemmilla kerroilla sama **"tehty"**
-    - Salasana ei saa sisältää välilyöntejä ja täytyy olla vähintään 3 merkkiä pitkä **"tehty"**
-- Käyttäjä voi kirjautua järjestelmään **"tehty"**
-  - Kirjautuminen onnistuu kirjoittaessa jo olemassaolevat käyttäjätunnus ja salasana kirjautumislomakkeelle **"tehty"**
-  - Jos käyttäjää ei ole olemassa tai salasana ei täsmää, antaa järjestelmä virheilmoituksen **"tehty"**
+- [x] Käyttäjä voi luoda järjestelmään käyttäjätunnuksen
+  - [x] Käyttäjätunnuksen täytyy olla uniikki ja vähintään 3 merkkiä pitkä ja ei saa sisältää välilyöntejä
+  - [x] Salasana syötetään rekisteröityessä kahdesti ja sen täytyy olla molemmilla kerroilla sama
+    - [x] Salasana ei saa sisältää välilyöntejä ja täytyy olla vähintään 3 merkkiä pitkä
+- [x] Käyttäjä voi kirjautua järjestelmään 
+  - [x] Kirjautuminen onnistuu kirjoittaessa jo olemassaolevat käyttäjätunnus ja salasana kirjautumislomakkeelle
+  - [x] Jos käyttäjää ei ole olemassa tai salasana ei täsmää, antaa järjestelmä virheilmoituksen
 
 ### Kirjautumisen jälkeen
 
-- Käyttäjä näkee varauskalenterin **"tehty"**
+- [x] Käyttäjä näkee varauskalenterin
   - Käyttäjä voi vaihtaa varauskohdetta ylhäältä klikkaamalla ja valitsemalla haluamansa
-- Käyttäjä voi varata vapaana olevan ajan **"tehty"**, mutta vain tunniksi per päivä per varauskohde
-- Käyttäjä voi peruuttaa tekemänsä varauksen
-- Käyttäjä voi kirjautua ulos järjestelmästä **"tehty"**
+- [x] Käyttäjä voi varata vapaana olevan ajan 
+  - [ ] Mutta vain tunniksi per päivä per varauskohde
+- [ ] Käyttäjä voi peruuttaa tekemänsä varauksen
+- [x] Käyttäjä voi kirjautua ulos järjestelmästä
 
-- Käyttäjän ollessa lisäksi ylläpitäjä:
-  - Ylläpitäjä voi peruuttaa kenen tahansa varauksen
-  - Ylläpitäjä voi luoda ylhäältä klikkaamalla uuden varauskohteen
-  - Ylläpitäjä voi tehdä käyttäjästä ylläpitäjän klikkaamalla ylhäältä
+- [ ] Käyttäjän ollessa lisäksi ylläpitäjä:
+  - [ ] Ylläpitäjä voi peruuttaa kenen tahansa varauksen
+  - [ ] Ylläpitäjä voi luoda ylhäältä klikkaamalla uuden varauskohteen
+  - [ ] Ylläpitäjä voi tehdä käyttäjästä ylläpitäjän klikkaamalla ylhäältä
 
 ## Jatkokehitysideoita
 
