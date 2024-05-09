@@ -36,6 +36,19 @@ class ReservationService:
             Reservation(username, date, hour))
 
         return reservation
+    
+    def cancel_reservation(self, username, date, hour):
+        """Peruuttaa ajanvarauksen.
+
+        Args:
+            username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+            date: Merkkijonoarvo, joka kuvastaa päivämäärää.
+            hour: Numero, joka kuvastaa ajanvarauksen alkavaa tuntia.
+        """
+
+        self._reservation_repository.cancel_reservation(Reservation(username, date, hour))
+
+
 
     def reservation_user(self, date, hour):
         """Etsii ajanvarauksen tehneen käyttäjän nimen.

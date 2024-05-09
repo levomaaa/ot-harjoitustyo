@@ -8,7 +8,7 @@ from services.reservation_service import reservation_service
 class CalenderView:
     """Ajanvarauskalenterista vastaava näkymä"""
 
-    def __init__(self, root, handle_logout, handle_create_reservation):
+    def __init__(self, root, handle_logout, handle_create_reservation, handle_cancel_reservation):
         """Luokan konstruktori. Luo uuden tehtävälistausnäkymän.
 
         Args:
@@ -22,7 +22,7 @@ class CalenderView:
         self._handle_logout = handle_logout
         self._user = user_service.get_current_user()
         self._handle_create_reservation = handle_create_reservation
-
+        self._handle_cancel_reservation = handle_cancel_reservation
         self._initialize_fields()
 
     def pack(self):
@@ -44,6 +44,14 @@ class CalenderView:
 
         reservation_service.create_reservation(username, date, hour)
         self._handle_create_reservation()
+
+    def _create_cancel_handler(self, selected_date, hour):
+        username = self._user.username
+        date = selected_date
+        hour = hour
+
+        reservation_service.cancel_reservation(username, date, hour)
+        self._handle_cancel_reservation()
 
     def _username_for_reservation(self, selected_date, hour):
         return reservation_service.reservation_user(selected_date, hour)
@@ -102,9 +110,9 @@ class CalenderView:
         schedule_frame.pack(fill="both", expand=True)
         # ChatGPT generated code ends
 
-        def _show_confirm_message():
+        def _show_confirm_message(text):
             schedule_window.destroy()
-            messagebox.showinfo('Info', "Reservation created successfully!")
+            messagebox.showinfo('Info', text)
             self._root.deiconify()
 
         for hour in range(7, 22):
@@ -113,19 +121,27 @@ class CalenderView:
 
             username_for_reservation = self._username_for_reservation(
                 selected_date, hour)
+            
+            row_number = hour - 7
 
             if username_for_reservation == None:
                 reserve_label = ttk.Label(
                     schedule_frame, text="Not reserved", foreground="green")
+                reserve_button = ttk.Button(
+                    master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_confirm_message("Reservation created successfully!")])
+                reserve_button.grid(row=row_number, column=2, padx=10, pady=5)
+
             else:
                 reserve_label = ttk.Label(
                     schedule_frame, text=username_for_reservation, foreground="red")
+                if username_for_reservation == self._user.username:
+                    cancel_button = ttk.Button(
+                        master=schedule_frame, text="Cancel reservation", command=lambda hour=hour: [self._create_cancel_handler(selected_date, hour), _show_confirm_message("Reservation cancelled succesfully!")])
+                    cancel_button.grid(row=row_number, column=2, padx=10, pady=5)
 
-            reserve_button = ttk.Button(
-                master=schedule_frame, text="Reserve", command=lambda hour=hour: [self._create_reservation_handler(selected_date, hour), _show_confirm_message()])
-            row_number = hour - 7
+
+            
             hour_label.grid(row=row_number, column=0, padx=10, pady=5)
-            reserve_button.grid(row=row_number, column=2, padx=10, pady=5)
             reserve_label.grid(row=row_number, column=1, padx=10, pady=5)
 
         # ChatGPT generated code begins

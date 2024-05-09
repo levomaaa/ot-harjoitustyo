@@ -39,6 +39,19 @@ class ReservationRepository:
         self._connection.commit()
 
         return reservation
+    
+    def cancel_reservation(self, reservation):
+        """Peruuttaa yksittäisen ajanvarauksen tietokannasta.
+        """
+
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            "delete from reservations where username = ? and date = ? and hour = ?",
+            (reservation.username, reservation.date, reservation.hour)
+        )
+
+        self._connection.commit()
 
     def find_username(self, reservation):
         """Etsii tietokannasta ajanvarauksen luoneen käyttäjän nimen.
