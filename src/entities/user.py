@@ -16,3 +16,8 @@ class User:
 
         self.username = username
         self.password = password
+
+        if username == "admin":
+            self.admin = True
+        else:
+            self.admin = False

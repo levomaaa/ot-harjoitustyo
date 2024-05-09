@@ -55,11 +55,7 @@ class CalenderView:
 
 
     def _create_cancel_handler(self, selected_date, hour):
-        username = self._user.username
-        date = selected_date
-        hour = hour
-
-        reservation_service.cancel_reservation(username, date, hour)
+        reservation_service.cancel_reservation(selected_date, hour)
         self._handle_cancel_reservation()
 
     def _username_for_reservation(self, selected_date, hour):
@@ -147,7 +143,7 @@ class CalenderView:
             else:
                 reserve_label = ttk.Label(
                     schedule_frame, text=username_for_reservation, foreground="red")
-                if username_for_reservation == self._user.username:
+                if username_for_reservation == self._user.username or self._user.admin == True:
                     cancel_button = ttk.Button(
                         master=schedule_frame, text="Cancel reservation", command=lambda hour=hour: [self._create_cancel_handler(selected_date, hour), _show_message("Reservation cancelled succesfully!")])
                     cancel_button.grid(row=row_number, column=2, padx=10, pady=5)

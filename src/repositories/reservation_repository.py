@@ -40,15 +40,15 @@ class ReservationRepository:
 
         return reservation
     
-    def cancel_reservation(self, reservation):
+    def cancel_reservation(self, date, hour):
         """Peruuttaa yksittäisen ajanvarauksen tietokannasta.
         """
 
         cursor = self._connection.cursor()
 
         cursor.execute(
-            "delete from reservations where username = ? and date = ? and hour = ?",
-            (reservation.username, reservation.date, reservation.hour)
+            "delete from reservations where date = ? and hour = ?",
+            (date, hour)
         )
 
         self._connection.commit()
