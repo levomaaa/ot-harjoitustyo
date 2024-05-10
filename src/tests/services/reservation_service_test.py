@@ -24,6 +24,26 @@ class FakeReservationRepository:
             return filtered_list[0].username
         else:
             return None
+    
+    def cancel_reservation(self, date, hour):
+        reservations = filter(
+            lambda reservation: reservation.date != date or reservation.hour != hour,
+            self.reservations
+        )
+
+        self.reservations = list(reservations)
+    
+    def check_reservation(self, username, date):
+        reservations = filter(
+            lambda reservation: reservation.username == username or reservation.date == date,
+            self.reservations
+        )
+
+        if len(list(reservations)) != 0:
+            return True
+        
+        return False
+
 
 
 class TestReservationService(unittest.TestCase):
@@ -33,9 +53,10 @@ class TestReservationService(unittest.TestCase):
         self.reservation = Reservation('Aapeli', '2040-10-11', 12)
 
     def test_reservation_user(self):
-        username = 'Ilari'
-        date = '2020-10-11'
-        hour = 10
+        username = self.reservation.username
+        date = self.reservation.date
+        hour = self.reservation.hour
+        
         self.reservation_service.create_reservation(username, date, hour)
 
         reservations = self.reservation_service.get_reservations()
@@ -44,3 +65,28 @@ class TestReservationService(unittest.TestCase):
 
         self.assertEqual(len(reservations), 1)
         self.assertEqual(reservations[0].username, returned_username)
+
+    def test_cancel_reservation(self):
+        username = self.reservation.username
+        date = self.reservation.date
+        hour = self.reservation.hour
+        
+        self.reservation_service.create_reservation(username, date, hour)
+
+        self.reservation_service.cancel_reservation(date, hour)
+
+        reservations = self.reservation_service.get_reservations()
+        
+        self.assertEqual(len(reservations), 0)
+
+    def test_check_reservation(self):
+        username = self.reservation.username
+        date = self.reservation.date
+        hour = self.reservation.hour
+        
+        self.reservation_service.create_reservation(username, date, hour)
+
+        checked_reservation = self.reservation_service.check_reservation(username, date)
+
+        self.assertEqual(checked_reservation, True)
+

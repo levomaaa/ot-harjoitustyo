@@ -24,21 +24,32 @@ class FakeUserRepository:
             return filtered_list[0]
         else:
             return None
+    
+    def make_admin(self,username):
+        user = self.find_by_username(username)
+        user.admin = True
+
+    def is_admin(self,username):
+        user = self.find_by_username(username)
+        return user.admin
+
 
 
 class TestUserService(unittest.TestCase):
     def setUp(self):
         self.user_service = UserService(FakeUserRepository())
-        self.user_aapeli = User('Aapeli', '1234')
+        self.user_aapeli = User('Aapeli', '1234', False)
 
     def login_user(self, user):
-        self.user_service.create_user(user.username, user.password)
+        self.user_service.create_user(user.username, user.password, user.admin)
         self.user_service.login(user.username, user.password)
 
     def test_create_user(self):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
-        self.user_service.create_user(username, password)
+        admin = self.user_aapeli.admin
+
+        self.user_service.create_user(username, password, admin)
         users = self.user_service.get_users()
 
         self.assertEqual(len(users), 1)
@@ -47,18 +58,20 @@ class TestUserService(unittest.TestCase):
     def test_create_user_with_existing_username(self):
         username = self.user_aapeli.username
         password = self.user_aapeli.password
+        admin = self.user_aapeli.admin
 
-        self.user_service.create_user(username, password)
+        self.user_service.create_user(username, password, admin)
 
         self.assertRaises(
             UsernameExistsError,
-            lambda: self.user_service.create_user(username, password)
+            lambda: self.user_service.create_user(username, password, admin)
         )
 
     def test_login_with_valid_credentials(self):
         self.user_service.create_user(
             self.user_aapeli.username,
-            self.user_aapeli.password
+            self.user_aapeli.password,
+            self.user_aapeli.admin
         )
 
         user = self.user_service.login(
@@ -87,3 +100,40 @@ class TestUserService(unittest.TestCase):
         current_user = self.user_service.get_current_user()
 
         self.assertEqual(current_user.username, self.user_aapeli.username)
+
+    def test_make_admin(self):
+        self.user_service.create_user(
+            self.user_aapeli.username,
+            self.user_aapeli.password,
+            self.user_aapeli.admin
+        )
+
+        self.user_service.make_admin(self.user_aapeli.username)
+
+        current_user = self.user_service.get_users()
+
+        self.assertEqual(current_user[0].admin, True)
+
+    def test_is_admin_false(self): 
+        self.user_service.create_user(
+            self.user_aapeli.username,
+            self.user_aapeli.password,
+            self.user_aapeli.admin
+        )
+        
+        boolean = self.user_service.is_admin(self.user_aapeli.username)
+
+        self.assertEqual(boolean, False)
+    
+    def test_is_admin_true(self): 
+        self.user_service.create_user(
+            self.user_aapeli.username,
+            self.user_aapeli.password,
+            self.user_aapeli.admin
+        )
+        
+        self.user_service.make_admin(self.user_aapeli.username)
+        
+        boolean = self.user_service.is_admin(self.user_aapeli.username)
+
+        self.assertEqual(boolean, True)
