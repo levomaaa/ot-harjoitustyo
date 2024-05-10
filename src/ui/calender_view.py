@@ -37,7 +37,7 @@ class CalenderView:
     def _logout_handler(self):
         user_service.logout()
         self._handle_logout()
-        
+
     def _has_reservation_handler(self, date):
         return reservation_service.check_reservation(self._user.username, date)
 
@@ -59,13 +59,15 @@ class CalenderView:
 
     def _username_for_reservation(self, selected_date, hour):
         return reservation_service.reservation_user(selected_date, hour)
+
     # ChatGPT generated code begins
     def _make_admin_handler(self, adminlist):
         selected_indices = adminlist.curselection()
         for index in selected_indices:
             username = adminlist.get(index)
     # ChatGPT generated code ends
-            msgbox = messagebox.askquestion('Info', f"Are you sure want to make {username} as admin?")
+            msgbox = messagebox.askquestion(
+                'Info', f"Are you sure want to make {username} as admin?")
             if msgbox == 'yes':
                 user_service.make_admin(username)
                 self._handle_make_admin()
@@ -81,21 +83,30 @@ class CalenderView:
             "Arial", 16), text=f"Logged in as {self._user.username}")
 
         if self._user.admin == True:
-            adminlist = Listbox(self._frame, width=30, height=15, selectmode='MULTIPLE')
-            scrollbar_y = Scrollbar(self._frame, width=10, command=adminlist.yview)
-            scrollbar_x = Scrollbar(self._frame, width=10, orient="horizontal", command=adminlist.xview)
-            adminlist.config(yscrollcommand=scrollbar_y.set, xscrollcommand=scrollbar_x.set)
+            adminlist = Listbox(self._frame, width=30,
+                                height=15, selectmode='MULTIPLE')
+            scrollbar_y = Scrollbar(
+                self._frame, width=10, command=adminlist.yview)
+            scrollbar_x = Scrollbar(
+                self._frame, width=10, orient="horizontal", command=adminlist.xview)
+            adminlist.config(yscrollcommand=scrollbar_y.set,
+                             xscrollcommand=scrollbar_x.set)
             users = user_service.get_users()
             i = 0
             for user in users:
                 if user_service.is_admin(user.username) == False:
                     adminlist.insert(i, user.username)
                     i += 1
-            adminlist.grid(row=2, column=0, padx=5, pady=5, sticky=(constants.W, constants.E, constants.N, constants.S))
-            scrollbar_y.grid(row=2, column=1, sticky=(constants.W, constants.N, constants.S))
-            scrollbar_x.grid(row=3, column=0, sticky=(constants.W, constants.E, constants.N))
-            admin_button = ttk.Button(self._frame, text="Make as admin", command=lambda: self._make_admin_handler(adminlist))
-            admin_button.grid(row=4, column=0, padx=5, pady=5, sticky=(constants.W, constants.E, constants.N, constants.S))
+            adminlist.grid(row=2, column=0, padx=5, pady=5, sticky=(
+                constants.W, constants.E, constants.N, constants.S))
+            scrollbar_y.grid(row=2, column=1, sticky=(
+                constants.W, constants.N, constants.S))
+            scrollbar_x.grid(row=3, column=0, sticky=(
+                constants.W, constants.E, constants.N))
+            admin_button = ttk.Button(
+                self._frame, text="Make as admin", command=lambda: self._make_admin_handler(adminlist))
+            admin_button.grid(row=4, column=0, padx=5, pady=5, sticky=(
+                constants.W, constants.E, constants.N, constants.S))
 
         # ChatGPT generated code begins
         cal_frame = ttk.Frame(master=self._frame)
@@ -115,7 +126,6 @@ class CalenderView:
                            sticky=constants.N, padx=8, pady=8)
         user_label.grid(row=1, columnspan=2, sticky=(
             constants.E, constants.N), padx=5, pady=5)
-        
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=600)
 
@@ -153,7 +163,7 @@ class CalenderView:
 
             username_for_reservation = self._username_for_reservation(
                 selected_date, hour)
-            
+
             row_number = hour - 7
 
             if username_for_reservation == None:
@@ -173,10 +183,9 @@ class CalenderView:
                 if username_for_reservation == self._user.username or self._user.admin == True:
                     cancel_button = ttk.Button(
                         master=schedule_frame, text="Cancel reservation", command=lambda hour=hour: [self._create_cancel_handler(selected_date, hour), _show_message("Reservation cancelled succesfully!")])
-                    cancel_button.grid(row=row_number, column=2, padx=10, pady=5)
+                    cancel_button.grid(
+                        row=row_number, column=2, padx=10, pady=5)
 
-
-            
             hour_label.grid(row=row_number, column=0, padx=10, pady=5)
             reserve_label.grid(row=row_number, column=1, padx=10, pady=5)
 

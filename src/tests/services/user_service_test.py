@@ -9,6 +9,7 @@ class FakeUserRepository:
 
     def create(self, user):
         self.users.append(user)
+
         return user
 
     def find_all(self):
@@ -24,15 +25,15 @@ class FakeUserRepository:
             return filtered_list[0]
         else:
             return None
-    
-    def make_admin(self,username):
+
+    def make_admin(self, username):
         user = self.find_by_username(username)
         user.admin = True
 
-    def is_admin(self,username):
+    def is_admin(self, username):
         user = self.find_by_username(username)
-        return user.admin
 
+        return user.admin
 
 
 class TestUserService(unittest.TestCase):
@@ -114,26 +115,26 @@ class TestUserService(unittest.TestCase):
 
         self.assertEqual(current_user[0].admin, True)
 
-    def test_is_admin_false(self): 
+    def test_is_admin_false(self):
         self.user_service.create_user(
             self.user_aapeli.username,
             self.user_aapeli.password,
             self.user_aapeli.admin
         )
-        
+
         boolean = self.user_service.is_admin(self.user_aapeli.username)
 
         self.assertEqual(boolean, False)
-    
-    def test_is_admin_true(self): 
+
+    def test_is_admin_true(self):
         self.user_service.create_user(
             self.user_aapeli.username,
             self.user_aapeli.password,
             self.user_aapeli.admin
         )
-        
+
         self.user_service.make_admin(self.user_aapeli.username)
-        
+
         boolean = self.user_service.is_admin(self.user_aapeli.username)
 
         self.assertEqual(boolean, True)

@@ -98,8 +98,8 @@ class UserRepository:
         row = cursor.fetchone()
 
         return get_user_by_row(row)
-    
-    def is_admin(self,username):
+
+    def is_admin(self, username):
         """Tarkistaa tietokannasta, onko käyttäjällä admin-rooli.
 
         Args:
@@ -119,22 +119,23 @@ class UserRepository:
         row = cursor.fetchone()
         if row is not None:
             return bool(row[0])
-        else:
-            return False
-    
+
+        return False
+
     def make_admin(self, username):
         """Antaa käyttäjälle tietokantaan admin-roolin.
 
         Args:
             username: Käyttäjätunnus, jonka perusteella käyttäjälle annetaan admin-rooli.
         """
-        
+
         cursor = self._connection.cursor()
 
         cursor.execute("update users set admin = True where username = ?",
                        (username,)
-        )
+                       )
 
         self._connection.commit()
+
 
 user_repository = UserRepository(get_database_connection())

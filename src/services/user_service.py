@@ -102,7 +102,7 @@ class UserService:
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
         """
-        
+
         self._user_repository.make_admin(username)
 
     def is_admin(self, username):
@@ -110,7 +110,12 @@ class UserService:
 
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+
+        Returns:
+            True: Jos käyttäjällä on admin-rooli.
+            False: Jos käyttäjällä ei ole admin-roolia.
         """
+
         return self._user_repository.is_admin(username)
 
 

@@ -11,6 +11,7 @@ class TestUserRepository(unittest.TestCase):
 
     def test_create(self):
         user_repository.create(self.user_aapeli)
+
         users = user_repository.find_all()
 
         self.assertEqual(len(users), 1)
@@ -18,14 +19,16 @@ class TestUserRepository(unittest.TestCase):
         self.assertEqual(users[0].password, self.user_aapeli.password)
         self.assertEqual(users[0].admin, self.user_aapeli.admin)
 
-    def test_create_when_admin(self):   
+    def test_create_when_admin(self):
         user_repository.create(self.user_admin)
+
         users = user_repository.find_all()
-        
+
         self.assertEqual(users[0].admin, True)
 
     def test_find_by_username(self):
         user_repository.create(self.user_aapeli)
+
         user = user_repository.find_by_username(self.user_aapeli.username)
 
         self.assertEqual(user.username, self.user_aapeli.username)
@@ -43,17 +46,18 @@ class TestUserRepository(unittest.TestCase):
         boolean_admin = user_repository.is_admin(self.user_admin.username)
 
         self.assertEqual(boolean_admin, True)
-    
+
     def test_is_admin_none(self):
         boolean_admin = user_repository.is_admin(self.user_admin.username)
 
         self.assertEqual(boolean_admin, False)
-    
+
     def test_make_admin(self):
         user_repository.create(self.user_aapeli)
 
         user_repository.make_admin(self.user_aapeli.username)
 
-        current_user = user_repository.find_by_username(self.user_aapeli.username)
+        current_user = user_repository.find_by_username(
+            self.user_aapeli.username)
 
         self.assertEqual(current_user.admin, True)
