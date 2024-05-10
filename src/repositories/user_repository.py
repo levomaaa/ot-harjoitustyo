@@ -11,7 +11,7 @@ def get_user_by_row(row):
     Returns: 
         Rivin tiedot User-oliona.
     """
-    return User(row["username"], row["password"]) if row else None
+    return User(row["username"], row["password"], row["admin"]) if row else None
 
 
 class UserRepository:
@@ -38,11 +38,16 @@ class UserRepository:
         """
 
         cursor = self._connection.cursor()
-
-        cursor.execute(
-            "insert into users (username, password) values (?, ?)",
-            (user.username, user.password)
-        )
+        if user.username == "admin":
+            cursor.execute(
+                "insert into users (username, password, admin) values (?, ?, True)",
+                (user.username, user.password)
+            )
+        else:
+            cursor.execute(
+                "insert into users (username, password, admin) values (?, ?, False)",
+                (user.username, user.password)
+            )
 
         self._connection.commit()
 
@@ -93,6 +98,43 @@ class UserRepository:
         row = cursor.fetchone()
 
         return get_user_by_row(row)
+    
+    def is_admin(self,username):
+        """Tarkistaa tietokannasta, onko käyttäjällä admin-rooli.
 
+        Args:
+            username: Käyttäjätunnus, jonka rooli tarkastetaan.
+
+        Returns:
+            True: Jos käyttäjällä on admin-rooli.
+            False: Jos käyttäjällä ei ole admin-roolia.
+        """
+        cursor = self._connection.cursor()
+
+        cursor.execute(
+            "select admin from users where username = ?",
+            (username,)
+        )
+
+        row = cursor.fetchone()
+        if row is not None:
+            return bool(row[0])
+        else:
+            return False
+    
+    def make_admin(self, username):
+        """Antaa käyttäjälle tietokantaan admin-roolin.
+
+        Args:
+            username: Käyttäjätunnus, jonka perusteella käyttäjälle annetaan admin-rooli.
+        """
+        
+        cursor = self._connection.cursor()
+
+        cursor.execute("update users set admin = True where username = ?",
+                       (username,)
+        )
+
+        self._connection.commit()
 
 user_repository = UserRepository(get_database_connection())

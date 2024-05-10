@@ -38,7 +38,7 @@ class UserService:
         """
         return self._user_repository.find_all()
 
-    def create_user(self, username, password):
+    def create_user(self, username, password, admin):
         """Luo uuden käyttäjän ja kirjaa sen sisään.
 
         Args:
@@ -57,7 +57,7 @@ class UserService:
         if existing_user:
             raise UsernameExistsError(f"Username {username} already exists")
 
-        user = self._user_repository.create(User(username, password))
+        user = self._user_repository.create(User(username, password, admin))
 
         return user
 
@@ -95,6 +95,23 @@ class UserService:
             Kirjautunut käyttäjä User-oliona.
         """
         return self._user
+
+    def make_admin(self, username):
+        """Antaa User-oliolle admin roolin.
+
+        Args:
+            username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+        """
+        
+        self._user_repository.make_admin(username)
+
+    def is_admin(self, username):
+        """Tarkistaa onko käyttäjällä admin rooli.
+
+        Args:
+            username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
+        """
+        return self._user_repository.is_admin(username)
 
 
 user_service = UserService()

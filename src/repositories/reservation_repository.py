@@ -42,6 +42,10 @@ class ReservationRepository:
     
     def cancel_reservation(self, date, hour):
         """Peruuttaa yksittäisen ajanvarauksen tietokannasta.
+        
+        Args:
+            date: Merkkijonoarvo, joka kuvastaa päivämäärää.           
+            hour: Numero, joka kuvastaa alkavaa tuntia numerona.
         """
 
         cursor = self._connection.cursor()

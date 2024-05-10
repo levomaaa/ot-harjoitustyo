@@ -1,4 +1,4 @@
-from tkinter import ttk, constants, messagebox
+from tkinter import ttk, constants, messagebox, Listbox, Scrollbar
 from tkcalendar import Calendar
 import tkinter as tk
 from services.user_service import user_service
@@ -8,7 +8,7 @@ from services.reservation_service import reservation_service
 class CalenderView:
     """Ajanvarauskalenterista vastaava näkymä"""
 
-    def __init__(self, root, handle_logout, handle_create_reservation, handle_cancel_reservation):
+    def __init__(self, root, handle_logout, handle_create_reservation, handle_cancel_reservation, handle_make_admin):
         """Luokan konstruktori. Luo uuden tehtävälistausnäkymän.
 
         Args:
@@ -23,6 +23,7 @@ class CalenderView:
         self._user = user_service.get_current_user()
         self._handle_create_reservation = handle_create_reservation
         self._handle_cancel_reservation = handle_cancel_reservation
+        self._handle_make_admin = handle_make_admin
         self._initialize_fields()
 
     def pack(self):
@@ -52,14 +53,22 @@ class CalenderView:
             self._handle_create_reservation()
             return True
 
-
-
     def _create_cancel_handler(self, selected_date, hour):
         reservation_service.cancel_reservation(selected_date, hour)
         self._handle_cancel_reservation()
 
     def _username_for_reservation(self, selected_date, hour):
         return reservation_service.reservation_user(selected_date, hour)
+    # ChatGPT generated code begins
+    def _make_admin_handler(self, adminlist):
+        selected_indices = adminlist.curselection()
+        for index in selected_indices:
+            username = adminlist.get(index)
+    # ChatGPT generated code ends
+            msgbox = messagebox.askquestion('Info', f"Are you sure want to make {username} as admin?")
+            if msgbox == 'yes':
+                user_service.make_admin(username)
+                self._handle_make_admin()
 
     def _initialize_fields(self):
         self._frame = ttk.Frame(master=self._root)
@@ -71,17 +80,34 @@ class CalenderView:
         user_label = ttk.Label(master=self._frame, font=(
             "Arial", 16), text=f"Logged in as {self._user.username}")
 
+        if self._user.admin == True:
+            adminlist = Listbox(self._frame, width=30, height=15, selectmode='MULTIPLE')
+            scrollbar_y = Scrollbar(self._frame, width=10, command=adminlist.yview)
+            scrollbar_x = Scrollbar(self._frame, width=10, orient="horizontal", command=adminlist.xview)
+            adminlist.config(yscrollcommand=scrollbar_y.set, xscrollcommand=scrollbar_x.set)
+            users = user_service.get_users()
+            i = 0
+            for user in users:
+                if user_service.is_admin(user.username) == False:
+                    adminlist.insert(i, user.username)
+                    i += 1
+            adminlist.grid(row=2, column=0, padx=5, pady=5, sticky=(constants.W, constants.E, constants.N, constants.S))
+            scrollbar_y.grid(row=2, column=1, sticky=(constants.W, constants.N, constants.S))
+            scrollbar_x.grid(row=3, column=0, sticky=(constants.W, constants.E, constants.N))
+            admin_button = ttk.Button(self._frame, text="Make as admin", command=lambda: self._make_admin_handler(adminlist))
+            admin_button.grid(row=4, column=0, padx=5, pady=5, sticky=(constants.W, constants.E, constants.N, constants.S))
+
         # ChatGPT generated code begins
         cal_frame = ttk.Frame(master=self._frame)
         cal = Calendar(cal_frame, font="Arial 24",
                        selectmode="day", date_pattern="yyyy-mm-dd")
         cal.pack(pady=20, fill="both", expand=True)
         cal.bind("<<CalendarSelected>>", self._open_day_schedule)
-        cal_frame.grid(row=3, columnspan=2, padx=5, pady=5)
+        cal_frame.grid(row=5, columnspan=2, padx=5, pady=5)
         # ChatGPT generated code ends
 
         self.selected_date = ttk.Label(self._frame, text="")
-        self.selected_date.grid(row=4, columnspan=2, pady=10)
+        self.selected_date.grid(row=6, columnspan=2, pady=10)
 
         logout_button.grid(row=2, columnspan=2, sticky=(
             constants.E, constants.N), padx=5, pady=5)
@@ -89,6 +115,7 @@ class CalenderView:
                            sticky=constants.N, padx=8, pady=8)
         user_label.grid(row=1, columnspan=2, sticky=(
             constants.E, constants.N), padx=5, pady=5)
+        
 
         self._frame.grid_columnconfigure(1, weight=1, minsize=600)
 

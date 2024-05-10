@@ -36,6 +36,7 @@ class CreateUserView:
     def _create_user_handler(self):
         username = self._username_entry.get()
         password = self._password_entry.get()
+        admin = False
         password_repeat = self._password_entry_repeat.get()
 
         if len(username) < 3 or len(password) < 3 or len(password_repeat) < 3:
@@ -55,7 +56,7 @@ class CreateUserView:
                 return
 
         try:
-            user_service.create_user(username, password)
+            user_service.create_user(username, password, admin)
             self._handle_create_user()
         except UsernameExistsError:
             self._show_error(f"Username {username} already exists")
