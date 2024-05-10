@@ -1,9 +1,10 @@
-from tkinter import ttk, StringVar, constants, messagebox
+from tkinter import ttk, constants, messagebox
 from services.user_service import user_service, UsernameExistsError
 
 
 class CreateUserView:
-    """Käyttäjän luomisesta vastaava näkymä."""
+    """Käyttäjän luomisesta vastaava näkymä.
+    """
 
     def __init__(self, root, handle_create_user, handle_show_login_view):
         """Luokan konstruktori. Luo rekisteröitymisnäkymän.
@@ -12,10 +13,11 @@ class CreateUserView:
             root:
                 TKinter-elementti, johon näkymä alustetaan.
             handle_create_user:
-                Kutsuttava-arvo, jota kutsutaan kun käyttäjä luodaan. Saa argumentteina käyttäjätunnuksen ja salasanan.
+                Kutsuttava-arvo, jota kutsutaan kun käyttäjä luodaan.
             handle_show_login_view:
                 Kutsuttava-arvo, jota kutsutaan kun siirrytään takaisin kirjautumisnäkymään.
-            """
+        """
+
         self._root = root
         self._handle_create_user = handle_create_user
         self._handle_back_to_login = handle_show_login_view
@@ -26,11 +28,15 @@ class CreateUserView:
         self._initialize_fields()
 
     def pack(self):
-        """"Näyttää näkymän."""
+        """"Näyttää näkymän.
+        """
+
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
-        """Tuhoaa näkymän."""
+        """Tuhoaa näkymän.
+        """
+
         self._frame.destroy()
 
     def _create_user_handler(self):

@@ -1,10 +1,10 @@
 from tkinter import Tk, ttk, constants, messagebox
-from tkinter.font import BOLD, Font
 from services.user_service import user_service, InvalidCredentialsError
 
 
 class LoginView:
-    """Käyttäjän kirjautumisesta vastaava näkymä."""
+    """Käyttäjän kirjautumisesta vastaava näkymä.
+    """
 
     def __init__(self, root, handle_show_create_user_view, handle_login):
         """Luokan konstruktori, joka luo kirjautumisnäkymän.
@@ -28,11 +28,15 @@ class LoginView:
         self._initialize_fields()
 
     def destroy(self):
-        """"Tuhoaa näkymän."""
+        """"Tuhoaa näkymän.
+        """
+
         self._frame.destroy()
 
     def pack(self):
-        """"Näyttää näkymän."""
+        """"Näyttää näkymän.
+        """
+
         self._frame.pack(fill=constants.X)
 
     def _login_handler(self):

@@ -5,7 +5,7 @@ def drop_tables(connection):
     """Poistaa kaikki tietokantataulut.
 
     Args:
-        connection: Tietokantayhteyden Connection-olio
+        connection: Tietokantayhteyden Connection-olio.
     """
 
     cursor = connection.cursor()
@@ -25,7 +25,7 @@ def create_tables(connection):
     """Luo kaikki tietokantataulut.
 
     Args:
-        connection: Tietokantayhteyden Connection-olio
+        connection: Tietokantayhteyden Connection-olio.
     """
     cursor = connection.cursor()
 
@@ -51,7 +51,9 @@ def create_tables(connection):
 
 
 def initialize_database():
-    """Alustaa tietokantataulut."""
+    """Alustaa tietokantataulut.
+    """
+
     connection = get_database_connection()
     drop_tables(connection)
     create_tables(connection)

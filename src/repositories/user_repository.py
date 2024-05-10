@@ -3,14 +3,15 @@ from database_connection import get_database_connection
 
 
 def get_user_by_row(row):
-    """ Etsii käyttäjän annetun rivin tiedoilla.
+    """Etsii käyttäjän annetun rivin tiedoilla.
 
     Args:
-        row: Tietokantaoperaation palauttama rivi tietoa.
+        row: Tietokantaoperaation palauttama rivi käyttäjän tiedoista.
 
     Returns: 
         Rivin tiedot User-oliona.
     """
+
     return User(row["username"], row["password"], row["admin"]) if row else None
 
 
@@ -64,10 +65,10 @@ class UserRepository:
         self._connection.commit()
 
     def find_all(self):
-        """Palauttaa kaikki käyttäjät listana.
+        """Etsii kaikki käyttäjät tietokannasta.
 
         Returns:
-            Palauttaa listan kaikista User-olioista.
+            Palauttaa listan kaikista käyttäjistä User-olioina.
         """
 
         cursor = self._connection.cursor()
@@ -79,13 +80,13 @@ class UserRepository:
         return list(map(get_user_by_row, rows))
 
     def find_by_username(self, username):
-        """Palauttaa käyttäjän käyttäjätunnuksen perusteella tietokannasta.
+        """Etsii käyttäjän käyttäjätunnuksen perusteella tietokannasta.
 
         Args:
-            username: Käyttäjätunnus, jonka perusteella käyttäjä palautetaan.
+            username: Käyttäjätunnus, jonka perusteella käyttäjä etsitään.
 
         Returns:
-            Palauttaa User-olion, jos käyttäjätunnuksen omistava käyttäjä on tietokannassa.
+            Palauttaa User-olion, jos käyttäjätunnuksen omaava käyttäjä on tietokannassa.
         """
 
         cursor = self._connection.cursor()
@@ -103,7 +104,7 @@ class UserRepository:
         """Tarkistaa tietokannasta, onko käyttäjällä admin-rooli.
 
         Args:
-            username: Käyttäjätunnus, jonka rooli tarkastetaan.
+            username: Käyttäjätunnuksen omaava käyttäjä, jonka rooli tarkastetaan.
 
         Returns:
             True: Jos käyttäjällä on admin-rooli.

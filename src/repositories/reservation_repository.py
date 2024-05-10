@@ -41,7 +41,7 @@ class ReservationRepository:
         return reservation
 
     def cancel_reservation(self, date, hour):
-        """Peruuttaa yksittäisen ajanvarauksen tietokannasta.
+        """Poistaa yksittäisen ajanvarauksen tietokannasta.
 
         Args:
             date: Merkkijonoarvo, joka kuvastaa päivämäärää.           
@@ -58,7 +58,7 @@ class ReservationRepository:
         self._connection.commit()
 
     def check_reservation(self, username, date):
-        """Etsii tietokannasta käyttäjän ajanvarauksen tietyltä päivältä.
+        """Etsii tietokannasta käyttäjän ajanvarauksen halutulta päivältä.
 
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
@@ -83,13 +83,13 @@ class ReservationRepository:
         return False
 
     def find_username(self, reservation):
-        """Etsii tietokannasta ajanvarauksen luoneen käyttäjän nimen.
+        """Etsii tietokannasta ajanvarauksen luoneen käyttäjän käyttäjänimen.
 
         Args:
             reservation: Tarkistettava ajanvaraus Reservation-oliona.
 
         Returns:
-            Ajanvarauksen luoneen käyttäjän nimi.
+            Ajanvarauksen luoneen käyttäjän käyttäjänimi tai jos käyttäjää ei löydy niin None.
         """
 
         cursor = self._connection.cursor()
@@ -117,10 +117,10 @@ class ReservationRepository:
         self._connection.commit()
 
     def find_all(self):
-        """Palauttaa kaikki ajanvaraukset listana.
+        """Etsii kaikki ajanvaraukset.
 
         Returns:
-            Palauttaa listan kaikista Reservation-olioista.
+            Palauttaa listan kaikista ajanvarauksista Reservation-olioina.
         """
 
         cursor = self._connection.cursor()

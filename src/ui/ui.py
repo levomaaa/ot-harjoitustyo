@@ -1,25 +1,27 @@
-from tkinter import Tk, ttk, constants
-from tkinter.font import BOLD, Font
 from ui.login_view import LoginView
 from ui.create_user_view import CreateUserView
 from ui.calender_view import CalenderView
 
 
 class UI:
-    """Sovelluksen näkyvästä käyttöliittymästä vastaava luokka."""
+    """Sovelluksen näkyvästä käyttöliittymästä vastaava luokka.
+    """
 
     def __init__(self, root):
-        """Luokan konstruktori. Luo käyttöliittymästä vastaavan luokan.
+        """Luokan konstruktori.
 
         Args:
             root:
                 TKinter-elementti, johon käyttöliittymä alustetaan.
         """
+
         self._root = root
         self._current_view = None
 
     def start(self):
-        """Käynnistää käyttöliittymän."""
+        """Käynnistää käyttöliittymän.
+        """
+
         self._show_login_view()
 
     def _show_login_view(self):

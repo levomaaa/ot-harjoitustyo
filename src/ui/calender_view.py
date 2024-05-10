@@ -6,17 +6,25 @@ from services.reservation_service import reservation_service
 
 
 class CalenderView:
-    """Ajanvarauskalenterista vastaava näkymä"""
+    """Ajanvarauskalenterista vastaava näkymä.
+    """
 
     def __init__(self, root, handle_logout, handle_create_reservation, handle_cancel_reservation, handle_make_admin):
-        """Luokan konstruktori. Luo uuden tehtävälistausnäkymän.
+        """Luokan konstruktori, joka luo kalenterinäkymän.
 
         Args:
             root:
                 TKinter-elementti, johon näkymä alustetaan.
             handle_logout:
-                Kutsuttava-arvo, jota kutsutaan käyttäjän kirjautuessa ulos.
+                Kutsuttava arvo, jota kutsutaan käyttäjän kirjautuessa ulos.
+            handle_create_reservation:
+                Kutsuttava arvo, jota kutsutaan luotaessa ajanvarausta.
+            handle_cancel_reservation:
+                Kutsuttava arvo, jota kutsutaan peruuttaessa ajanvarausta.
+            handle_make_admin:
+                Kutsuttava arvo, jota kutsutaan kun annetaan käyttäjälle admin-rooli.
         """
+
         self._root = root
         self._frame = None
         self._handle_logout = handle_logout
@@ -27,11 +35,15 @@ class CalenderView:
         self._initialize_fields()
 
     def pack(self):
-        """"Näyttää näkymän."""
+        """"Näyttää näkymän.
+        """
+
         self._frame.pack(fill=constants.X)
 
     def destroy(self):
-        """"Tuhoaa näkymän."""
+        """"Tuhoaa näkymän.
+        """
+
         self._frame.destroy()
 
     def _logout_handler(self):

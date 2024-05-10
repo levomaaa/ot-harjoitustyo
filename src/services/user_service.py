@@ -14,13 +14,14 @@ class InvalidCredentialsError(Exception):
 
 
 class UserService:
-    """Käyttäjien sovelluslogiikasta vastaava luokka."""
+    """Käyttäjien sovelluslogiikasta vastaava luokka.
+    """
 
     def __init__(
         self,
         user_repository=default_user_repository
     ):
-        """Luokan konstruktori. Luo uuden sovelluslogiikasta vastaavan palvelun.
+        """Luokan konstruktori.
 
         Args:
             user_repository:
@@ -31,7 +32,7 @@ class UserService:
         self._user_repository = user_repository
 
     def get_users(self):
-        """Palauttaa listan kaikista käyttäjistä.
+        """Etsii kaikki käyttäjät.
 
         Returns:
             User-oliota sisältävä lista käyttäjistä.
@@ -39,17 +40,18 @@ class UserService:
         return self._user_repository.find_all()
 
     def create_user(self, username, password, admin):
-        """Luo uuden käyttäjän ja kirjaa sen sisään.
+        """Luo uuden käyttäjän.
 
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
             password: Merkkijonoarvo, joka kuvastaa käyttäjän salasanaa.
+            admin: Boolean arvo, joka kertoo onko käyttäjällä admin-rooli.
 
         Raises:
             UsernameExistsError: Virhe, joka tapahtuu, jos käyttäjätunnus on jo käytössä.
 
         Returns:
-            Luo käyttäjän User-olion muodossa.
+            Palauttaa käyttäjän User-oliona.
         """
 
         existing_user = self._user_repository.find_by_username(username)
@@ -86,14 +88,16 @@ class UserService:
     def logout(self):
         """Kirjaa käyttäjän ulos järjestelmästä.
         """
+
         self._user = None
 
     def get_current_user(self):
-        """Palauttaa sisään kirjautunen käyttäjän.
+        """Etsii sisään kirjautunen käyttäjän.
 
         Returns:
             Kirjautunut käyttäjä User-oliona.
         """
+
         return self._user
 
     def make_admin(self, username):
@@ -106,7 +110,7 @@ class UserService:
         self._user_repository.make_admin(username)
 
     def is_admin(self, username):
-        """Tarkistaa onko käyttäjällä admin rooli.
+        """Tarkistaa onko käyttäjällä admin-rooli.
 
         Args:
             username: Merkkijonoarvo, joka kuvastaa käyttäjän käyttäjätunnusta.
