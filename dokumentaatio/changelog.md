@@ -31,3 +31,12 @@
 - Lisätty Reservation-luokka, joka vastaa yksittäisestä ajanvarauksesta
 - Käyttäjä voi tehdä ajanvarauksen
 - Testattu ReservationService ja ReservationRepository -luokkia monipuolisesti
+
+## Viikko 7
+
+- Käyttäjä voi olla ylläpitäjä
+- Lisätty User-luokkaan admin-rooli käyttäjälle
+- Viimeistelty toiminnallisuudet
+- Viimeistelty testit kaikille luokille
+- Viimeistelty dokumentaatio
+- Ohjelma saatu valmiiksi
