@@ -2,17 +2,17 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen tarkoituksena on, että käyttäjät voivat varata tunnin mittaisia ajanjaksoja itselleen, esimerkiksi urheilukenttävuoron. Sovelluksen käyttäjät näkevät varaamattomat vapaat vuorot, sekä muiden käyttäjien varaamat varatut vuorot.
+Sovelluksen tarkoituksena on, että käyttäjät voivat varata tunnin mittaisia vuoroja itselleen, esimerkiksi urheilukenttävuoron. Sovelluksen käyttäjät näkevät varaamattomat vapaat vuorot, sekä muiden käyttäjien varaamat varatut vuorot. Oman varauksen voi myös peruuttaa, ja admin-roolin omaava käyttäjä voi peruuttaa kenen tahansa vuoron.
 
 ## Käyttäjät
 
-Sovelluksessa on kaksi käyttäjäroolia eli _normaali käyttäjä (user)_ sekä _ylläpitäjä (admin)_. User voi varata itselleen vuoroja sekä peruuttaa varaamiaan vuoroja. Admin voi varata vuoroja, sekä peruuttaa kenen tahansa vuoron. Tämän lisäksi admin voi luoda kalenteriin uusia varauskohteita ja tehdä normaalista käyttäjästä ylläpitäjän.
+Sovelluksessa on kaksi käyttäjäroolia eli _normaali käyttäjä (user)_ sekä _ylläpitäjä/admin_ eli käyttäjä, jolle on annettu _(admin)_-rooli. User voi varata itselleen vuoroja sekä peruuttaa varaamiaan vuoroja. Admin voi varata vuoroja, sekä peruuttaa kenen tahansa vuoron. Tämän lisäksi admin voi antaa normaalille käyttäjälle admin-roolin.
 
 ## Käyttöliittymäluonnos
 
-Sovellus koostuu seitsemästä eri näkymästä, joista kahteen on oikeudet vain ylläpitäjällä
+Sovellus koostuu neljästä eri näkymästä, sekä neljästä pienestä info-näkymästä:
 
-![](./kuvat/kayttoliittyma-hahmotelma.png)
+![](./kuvat/kayttoliittyma-hahmotelma.jpg)
 
 Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käyttäjän luomiseen tai kirjautumisen onnistuessa siirtyä kirjautuneena kalenterisivulle.
 
@@ -31,21 +31,21 @@ Sovellus aukeaa kirjautumisnäkymään, josta on mahdollista siirtyä uuden käy
 ### Kirjautumisen jälkeen
 
 - [x] Käyttäjä näkee varauskalenterin
-  - Käyttäjä voi vaihtaa varauskohdetta ylhäältä klikkaamalla ja valitsemalla haluamansa
 - [x] Käyttäjä voi varata vapaana olevan ajan 
-  - [ ] Mutta vain tunniksi per päivä per varauskohde
-- [ ] Käyttäjä voi peruuttaa tekemänsä varauksen
+  - [x] Mutta vain tunniksi per päivä per varauskohde
+- [x] Käyttäjä voi peruuttaa tekemänsä varauksen
 - [x] Käyttäjä voi kirjautua ulos järjestelmästä
 
-- [ ] Käyttäjän ollessa lisäksi ylläpitäjä:
-  - [ ] Ylläpitäjä voi peruuttaa kenen tahansa varauksen
-  - [ ] Ylläpitäjä voi luoda ylhäältä klikkaamalla uuden varauskohteen
-  - [ ] Ylläpitäjä voi tehdä käyttäjästä ylläpitäjän klikkaamalla ylhäältä
+- [x] Käyttäjä voi olla myös ylläpitäjä
+  - [x] Ylläpitäjä voi peruuttaa kenen tahansa varauksen
+  - [x] Ylläpitäjä voi tehdä käyttäjästä ylläpitäjän valitsemalla sen listasta ja klikkaamalla napista
+
 
 ## Jatkokehitysideoita
 
 Perusversion jälkeen voidaan järjestelmää täydentää ajan salliessa esimerkiksi alla mainituilla ominaisuuksilla:
 
+- Varauskohteita/varauskalentereja useampia, ja klikkaamalla voi vaihtaa varauskalenteria
 - Varausta klikattaessa näkyy lisätietoja koskien varausta
 - Käyttäjät näkevät listan kaikista omista varauksistaan
 - Käyttäjien poistaminen
