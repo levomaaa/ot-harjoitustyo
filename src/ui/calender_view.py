@@ -79,7 +79,7 @@ class CalenderView:
             username = adminlist.get(index)
     # ChatGPT generated code ends
             msgbox = messagebox.askquestion(
-                'Info', f"Are you sure want to make {username} as admin?")
+                'Info', f"Are you sure you want to make {username} as admin?")
             if msgbox == 'yes':
                 user_service.make_admin(username)
                 self._handle_make_admin()
