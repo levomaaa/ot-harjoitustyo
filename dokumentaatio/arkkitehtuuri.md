@@ -129,9 +129,9 @@ sequenceDiagram
   ReservationService->>ReservationRepository: check_reservation(aapeli, 2024-05-12)
   ReservationRepository-->>ReservationService: True/False
   ReservationService-->>UI: True/False
-  UI->>UI: if True: error("You already have a reservation for this day!")
+  UI->>UI: if False: Error("You already have a reservation for this day!")
   UI->>ReservationService: if True: create_reservation(aapeli, 2024-05-12, 7)
-  ReservationRepository->>reservation: Reservation(aapeli, 2024-05-12, 7) 
+  ReservationService->>reservation: Reservation(aapeli, 2024-05-12, 7) 
   ReservationService->>ReservationRepository: create_reservation(aapeli, 2024-05-12, 7)
   ReservationRepository-->>ReservationService: reservation
   ReservationService-->>UI: reservation
