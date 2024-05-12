@@ -23,7 +23,7 @@ Sovelluksen toiminta on testattu Python-versiolla `3.10`. Jos Python-versiosi on
 * [Release-1](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko5)
 * [Release-2](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko6)
 * [Final release](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/loppupalautus)
-
+ 
 ## Asennus
 
 1. Asenna riippuvuudet komennolla:
