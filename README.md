@@ -1,6 +1,4 @@
-# Ohjelmistotekniikka harjoitustyö
-
-## Ajanvaraus sovellus
+# Ajanvaraus sovellus
 
 Sovelluksen avulla käyttäjät voivat varata tunnin mittaisia vuoroja (esim. urheilukenttävuoroja) käyttöönsä. Sovelluksessa käyttäjä näkee kalenterin. Kalenterista voi valita päivän, joka avaa uuden näkymän, josta tulee ilmi mitkä vuorot ovat muiden käyttäjien varaamia ja mitkä vapaita.
 
