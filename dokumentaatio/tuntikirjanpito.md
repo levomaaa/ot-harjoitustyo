@@ -16,4 +16,13 @@
 | 30.4. | 3    | ajan varaaminen |
 |       | 1    | testaus |
 |       | 2    | dokumentaatio |
-| yht   | 27   | | 
+| 9.5.  | 2    | ajan peruuttaminen |
+|       | 3    | ylläpitäjät |
+| 10.5. | 3    | ylläpitäjän toiminnot |
+|       | 2    | testaus |
+|       | 2    | docstring, pylint |
+| 11.5. | 1    | käyttöohje |
+|       | 1    | vaatimusmäärittely |
+|       | 1    | testaus-dokumentaatio |
+| 12.5  | 2    | arkkitehtuuri |
+| yht   | 44   | | 
