@@ -2,7 +2,7 @@
 
 ## Ajanvaraus sovellus
 
-Sovelluksen avulla käyttäjät voivat varata tunnin mittaisia vuoroja (esim. urheilukenttävuoroja) käyttöönsä. Sovelluksessa käyttäjä näkee vuorolistan, josta tulee ilmi mitkä vuorot ovat muiden käyttäjien varaamia ja mitkä vapaita.
+Sovelluksen avulla käyttäjät voivat varata tunnin mittaisia vuoroja (esim. urheilukenttävuoroja) käyttöönsä. Sovelluksessa käyttäjä näkee kalenterin. Kalenterista voi valita päivän, joka avaa uuden näkymän, josta tulee ilmi mitkä vuorot ovat muiden käyttäjien varaamia ja mitkä vapaita.
 
 ## Huomio Python-versiosta
 
@@ -11,15 +11,18 @@ Sovelluksen toiminta on testattu Python-versiolla `3.10`. Jos Python-versiosi on
 
 ### Dokumentaatio
 
+* [Käyttöohje](./dokumentaatio/kayttoohje.md)
 * [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+* [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
+* [Testausdokumentti](./dokumentaatio/testaus.md)
 * [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 * [Changelog](./dokumentaatio/changelog.md)
-* [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
 
 ## Releases
 
 * [Release-1](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko5)
 * [Release-2](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/viikko6)
+* [Final release](https://github.com/levomaaa/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ## Asennus
 
